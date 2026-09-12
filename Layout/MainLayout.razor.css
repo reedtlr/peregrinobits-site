@@ -1,0 +1,10 @@
+@inherits LayoutComponentBase
+
+<div class="page-container">
+    <main class="content-body">
+        @Body
+    </main>
+    <footer class="site-footer">
+        <p>&copy; 2026 PeregrinoBits • Autonomous Cold Storage</p>
+    </footer>
+</div>

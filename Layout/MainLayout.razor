@@ -1,0 +1,49 @@
+﻿@inherits LayoutComponentBase
+
+<CascadingValue Value="CurrentLanguage">
+    <div class="app-container">
+        <header class="top-nav">
+            <div class="lang-toggle">
+                <button class="btn-lang @(CurrentLanguage == "EN" ? "active" : "")" @onclick="@(() => SetLanguage("EN"))">EN</button>
+                <span class="divider">|</span>
+                <button class="btn-lang @(CurrentLanguage == "ES" ? "active" : "")" @onclick="@(() => SetLanguage("ES"))">ES</button>
+                <span class="divider">|</span>
+                <button class="btn-lang @(CurrentLanguage == "PT" ? "active" : "")" @onclick="@(() => SetLanguage("PT"))">PT</button>
+            </div>
+
+            <div class="nav-links">
+                <a href="/" class="nav-link">@HomeLink</a>
+                <a href="/about" class="nav-link">@AboutLink</a>
+            </div>
+        </header>
+
+        <main class="content-body">
+            @Body
+        </main>
+
+        <footer class="site-footer">
+            <p>&copy; 2026 PeregrinoBits • Autonomous Cold Storage</p>
+        </footer>
+    </div>
+</CascadingValue>
+
+@code {
+    private string CurrentLanguage { get; set; } = "EN";
+
+    private void SetLanguage(string lang)
+    {
+        CurrentLanguage = lang;
+    }
+
+    private string HomeLink => CurrentLanguage switch {
+        "ES" => "Inicio",
+        "PT" => "Início",
+        _ => "Home"
+    };
+
+    private string AboutLink => CurrentLanguage switch {
+        "ES" => "Acerca de",
+        "PT" => "Sobre",
+        _ => "About"
+    };
+}

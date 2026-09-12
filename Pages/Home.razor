@@ -1,0 +1,147 @@
+﻿@page "/"
+
+<PageTitle>PeregrinoBits | Camino Cold Storage</PageTitle>
+
+<div class="page-wrapper">
+    <header class="hero-section">
+        <div class="hero-logo-container">
+            <img src="images/logo.jpg" alt="PeregrinoBits Logo" class="hero-logo" />
+        </div>
+        <div class="hero-text-container">
+            <span class="badge">@BadgeText</span>
+            <h1 class="main-title">Tus llaves. Tu camino.</h1>
+            <p class="tagline">@TaglineText</p>
+            <p class="description">@DescriptionText</p>
+            
+            <div class="cta-group">
+                <button class="btn btn-primary disabled-btn" disabled>@BtnText</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="specs-grid" id="specs">
+        <div class="spec-card">
+            <div class="card-icon">⚡</div>
+            <h3>@Spec1Title</h3>
+            <p>@Spec1Desc</p>
+        </div>
+        <div class="spec-card">
+            <div class="card-icon">🔒</div>
+            <h3>@Spec2Title</h3>
+            <p>@Spec2Desc</p>
+        </div>
+        <div class="spec-card">
+            <div class="card-icon">🥾</div>
+            <h3>@Spec3Title</h3>
+            <p>@Spec3Desc</p>
+        </div>
+    </section>
+
+    <section class="ballet-section">
+        <h2>@BalletTitle</h2>
+        <p>@BalletDesc</p>
+        
+        <div class="ballet-links">
+            <a href="@BitcoinOrgUrl" target="_blank" class="btn btn-outline">@BitcoinOrgLinkText</a>
+            <a href="https://www.ballet.com/quick-start/" target="_blank" class="btn btn-outline">@BalletLink2</a>
+        </div>
+    </section>
+</div>
+
+@code {
+    // This attribute is MANDATORY for the toggle to work on this page
+    [CascadingParameter]
+    public string CurrentLanguage { get; set; } = "EN";
+
+    // --- Translations using C# Switch Expressions ---
+
+    private string BadgeText => CurrentLanguage switch {
+        "ES" => "Serie 1 • Edición Limitada",
+        "PT" => "Série 1 • Edição Limitada",
+        _ => "Series 1 • Limited Edition"
+    };
+
+    private string TaglineText => CurrentLanguage switch {
+        "ES" => "UN CAMINO ANTIGUO. UN ESTÁNDAR MODERNO.",
+        "PT" => "UM CAMINHO ANTIGO. UM PADRÃO MODERNO.",
+        _ => "AN ANCIENT PATH. A MODERN STANDARD."
+    };
+
+    private string DescriptionText => CurrentLanguage switch {
+        "ES" => "Uniendo el espíritu de la peregrinación del Camino de Santiago con la soberanía financiera moderna. Una edición limitada de almacenamiento en frío físico de Bitcoin.",
+        "PT" => "Unindo o espírito da peregrinação do Caminho de Santiago à soberania financeira moderna. Uma edição limitada de armazenamento a frio físico de Bitcoin.",
+        _ => "Bridging the spirit of the Camino de Santiago pilgrimage with modern financial sovereignty. A limited physical Bitcoin cold storage release."
+    };
+
+    private string BtnText => CurrentLanguage switch {
+        "ES" => "Lanzamiento en Bitcointalk: Próximamente",
+        "PT" => "Lançamento no Bitcointalk: Em Breve",
+        _ => "Bitcointalk Launch: Coming Soon"
+    };
+
+    private string Spec1Title => CurrentLanguage switch {
+        "ES" => "Escasez Estricta",
+        "PT" => "Escassez Rigorosa",
+        _ => "Strict Scarcity"
+    };
+
+    private string Spec1Desc => CurrentLanguage switch {
+        "ES" => "Exactamente 200 unidades acuñadas en todo el mundo. Cada pieza está numerada a mano con tinta metálica dorada de archivo (001/200).",
+        "PT" => "Exatamente 200 unidades cunhadas em todo o mundo. Cada peça é numerada à mão com tinta metálica dourada de arquivo (001/200).",
+        _ => "Exactly 200 units minted worldwide. Every piece is hand-numbered in archival gold metallic ink (001/200)."
+    };
+
+    private string Spec2Title => CurrentLanguage switch {
+        "ES" => "Descargado y Seguro",
+        "PT" => "Descarregado e Seguro",
+        _ => "Unloaded & Safe"
+    };
+
+    private string Spec2Desc => CurrentLanguage switch {
+        "ES" => "Se envía completamente descargado (saldo cero) para la autocustodia sin confianza y sin fricción regulatoria.",
+        "PT" => "Enviado completamente descarregado (saldo zero) para autocustódia sem necessidade de confiança e sem atrito regulatório.",
+        _ => "Ships completely unloaded (zero balance) for trustless self-custody and zero regulatory friction."
+    };
+
+    private string Spec3Title => CurrentLanguage switch {
+        "ES" => "Distribuido a Pie",
+        "PT" => "Distribuído a Pé",
+        _ => "Distributed by Foot"
+    };
+
+    private string Spec3Desc => CurrentLanguage switch {
+        "ES" => "Una parte está reservada para coleccionistas en línea; el resto se lleva por el Camino para ser regalado directamente a los peregrinos.",
+        "PT" => "Uma parte é reservada para colecionadores online; o restante será transportado pelas trilhas do Caminho para ser presenteado diretamente aos peregrinos.",
+        _ => "A portion is reserved for online collectors; the remainder is carried along the Camino trail to be gifted directly to pilgrims."
+    };
+
+    private string BalletTitle => CurrentLanguage switch {
+        "ES" => "Desarrollado por la Arquitectura Ballet",
+        "PT" => "Desenvolvido com a Arquitetura Ballet",
+        _ => "Powered by Ballet Architecture"
+    };
+
+    private string BalletDesc => CurrentLanguage switch {
+        "ES" => "La forma más segura de mantener la riqueza digital es a través del almacenamiento en frío puro y sin confianza. Los Peregrino Bits se construyen sobre la probada infraestructura de billetera física no electrónica de Ballet, eliminando los riesgos de fallas de hardware, malware y piratería digital.",
+        "PT" => "A maneira mais segura de manter a riqueza digital é através do armazenamento a frio puro e sem confiança. Os Peregrino Bits são construídos na comprovada infraestrutura de carteira física não eletrônica da Ballet, eliminando os riscos de falha de hardware, malware e hackers digitais.",
+        _ => "The safest way to hold digital wealth is through pure, trustless cold storage. Peregrino Bits are built on Ballet's proven, non-electronic physical wallet infrastructure, eliminating the risks of hardware failure, malware, and digital hacking."
+    };
+
+   private string BitcoinOrgLinkText => CurrentLanguage switch {
+        "ES" => "Cómo Funciona Bitcoin",
+        "PT" => "Como o Bitcoin Funciona",
+        _ => "How Bitcoin Works"
+    };
+
+    private string BitcoinOrgUrl => CurrentLanguage switch {
+        "ES" => "https://bitcoin.org/es/como-funciona",
+        "PT" => "https://bitcoin.org/pt_BR/como-funciona",
+        _ => "https://bitcoin.org/en/how-it-works"
+    };
+
+    private string BalletLink2 => CurrentLanguage switch {
+        "ES" => "Guía de Inicio Rápido de Ballet",
+        "PT" => "Guia de Início Rápido da Ballet",
+        _ => "Ballet Quick Start Guide"
+    };
+}

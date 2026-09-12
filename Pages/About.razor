@@ -1,0 +1,45 @@
+@page "/about"
+
+<PageTitle>@(CurrentLanguage == "EN" ? "About" : (CurrentLanguage == "ES" ? "Acerca de" : "Sobre")) | PeregrinoBits</PageTitle>
+
+<div class="page-wrapper">
+    <div class="content-container text-block">
+        <h1>@TitleText</h1>
+        
+        <p>@Paragraph1</p>
+        <p>@Paragraph2</p>
+        <p>@Paragraph3</p>
+    </div>
+</div>
+
+@code {
+    // This connects the page to the language toggle in the MainLayout
+    [CascadingParameter]
+    public string CurrentLanguage { get; set; } = "EN";
+
+    // --- Translations using C# Switch Expressions ---
+
+    private string TitleText => CurrentLanguage switch {
+        "ES" => "Acerca del Proyecto",
+        "PT" => "Sobre o Projeto",
+        _ => "About the Project"
+    };
+
+    private string Paragraph1 => CurrentLanguage switch {
+        "ES" => "PeregrinoBits se estableció con una misión central: promover la alfabetización sobre criptomonedas y defender los principios de la autosuficiencia financiera. En un mundo cada vez más digital, la verdadera soberanía aún depende de la capacidad fundamental de poseer tus propias llaves.",
+        "PT" => "PeregrinoBits foi criado com uma missão central: promover a alfabetização em criptomoedas e defender os princípios de autossuficiência financeira. Em um mundo cada vez mais digital, a verdadeira soberania ainda depende da habilidade fundamental de guardar suas próprias chaves.",
+        _ => "PeregrinoBits was established with a core mission: to promote cryptocurrency literacy and champion the principles of financial self-sufficiency. In an increasingly digital world, true sovereignty still relies on the fundamental ability to hold your own keys."
+    };
+
+    private string Paragraph2 => CurrentLanguage switch {
+        "ES" => "Al utilizar almacenamiento en frío físico y no electrónico, esta iniciativa tiene como objetivo desmitificar la autocustodia. Transforma conceptos digitales abstractos en activos tangibles y seguros que cualquiera puede entender y sostener físicamente.",
+        "PT" => "Ao utilizar armazenamento a frio físico e não eletrônico, esta iniciativa visa desmistificar a autocustódia. Ela transforma conceitos digitais abstratos em ativos tangíveis e seguros que qualquer pessoa pode entender e segurar fisicamente.",
+        _ => "By utilizing physical, non-electronic cold storage, this initiative aims to demystify self-custody. It transforms abstract digital concepts into tangible, secure assets that anyone can understand and physically hold."
+    };
+
+    private string Paragraph3 => CurrentLanguage switch {
+        "ES" => "Más allá del hardware, este proyecto está diseñado para cerrar la brecha entre las redes virtuales globales y las comunidades físicas del mundo real. Al llevar y distribuir una parte de estas billeteras de edición limitada a pie a lo largo del Camino de Santiago, PeregrinoBits conecta el espíritu descentralizado y sin fronteras de Bitcoin con la resistencia compartida y la conexión humana de la antigua peregrinación.",
+        "PT" => "Além do hardware, este projeto foi criado para preencher a lacuna entre as redes virtuais globais e as comunidades físicas do mundo real. Ao carregar e distribuir uma parte dessas carteiras de edição limitada a pé ao longo da trilha do Caminho de Santiago, PeregrinoBits conecta o ethos descentralizado e sem fronteiras do Bitcoin com a resistência compartilhada e a conexão humana da antiga peregrinação.",
+        _ => "Beyond the hardware, this project is designed to bridge the gap between global, virtual networks and physical, real-world communities. By carrying and distributing a portion of these limited-edition wallets by foot along the Camino de Santiago trail, PeregrinoBits connects the decentralized, borderless ethos of Bitcoin with the shared endurance and human connection of the ancient pilgrimage."
+    };
+}
