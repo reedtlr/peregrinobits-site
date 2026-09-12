@@ -286,3 +286,23 @@ body {
     color: #333333;
     font-size: 0.85rem;
 }
+/* Hide the Blazor error UI by default */
+#blazor-error-ui {
+    display: none;
+    background-color: #1a0606;
+    color: #ffcccc;
+    bottom: 0;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    border-top: 1px solid #ff0000;
+}
+
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}
