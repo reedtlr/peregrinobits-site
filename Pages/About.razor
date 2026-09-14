@@ -9,7 +9,14 @@
         <p>@Paragraph1</p>
         <p>@Paragraph2</p>
         <p>@Paragraph3</p>
+
+        <div class="contact-section mt-4">
+        <a href="mailto:@(EmailPrefix + EmailDomain)" class="btn btn-outline-light">
+            @(CurrentLanguage == "EN" ? "Contact the Project" : (CurrentLanguage == "ES" ? "Contactar al Proyecto" : "Contatar o Projeto"))
+        </a>
+        </div>
     </div>
+ 
 </div>
 
 @code {
@@ -17,6 +24,8 @@
     [CascadingParameter]
     public string CurrentLanguage { get; set; } = "EN";
 
+    private string EmailPrefix = "contact";
+    private string EmailDomain = "@peregrinobits.com";
     // --- Translations using C# Switch Expressions ---
 
     private string TitleText => CurrentLanguage switch {
