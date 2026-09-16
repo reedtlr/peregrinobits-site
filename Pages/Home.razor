@@ -5,6 +5,7 @@
 <div class="page-wrapper">
     <header class="hero-section">
         <div class="hero-logo-container">
+            <!-- Restored the original main logo -->
             <img src="images/logo.jpg" alt="PeregrinoBits Logo" class="hero-logo" />
         </div>
         <div class="hero-text-container">
@@ -18,6 +19,15 @@
             </div>
         </div>
     </header>
+
+    <section class="update-section">
+        <div class="update-content">
+            <div class="production-update-box">
+                <p>@UpdateParagraph</p>
+            </div>
+             <img src="images/teaser-milestone.jpg" alt="PeregrinoBits 2026 Milestone" class="teaser-image" />
+        </div>
+    </section>
 
     <section class="specs-grid" id="specs">
         <div class="spec-card">
@@ -48,8 +58,39 @@
     </section>
 </div>
 
+<style>
+    /* New styling for the dedicated update section */
+    .update-section {
+        margin: 3rem auto;
+        max-width: 800px;
+        text-align: center;
+        padding: 0 1rem;
+    }
+    
+    .teaser-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(255, 255, 255, 0.05);
+        margin-bottom: 1.5rem;
+    }
+    
+    .production-update-box {
+        background: rgba(255, 255, 255, 0.05);
+        border-left: 4px solid #f39c12; /* Accent color on the left edge */
+        padding: 1.2rem 1.5rem;
+        border-radius: 4px;
+        text-align: left;
+    }
+    
+    .production-update-box p {
+        margin: 0;
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+</style>
+
 @code {
-    // This attribute is MANDATORY for the toggle to work on this page
     [CascadingParameter]
     public string CurrentLanguage { get; set; } = "EN";
 
@@ -73,6 +114,12 @@
         _ => "Bridging the spirit of the Camino de Santiago pilgrimage with modern financial sovereignty. A limited physical Bitcoin cold storage release."
     };
 
+    private string UpdateParagraph => CurrentLanguage switch {
+        "ES" => "Actualización de Producción: Las billeteras físicas han entrado en producción. Fotos completas llegarán con el envío pronto.",
+        "PT" => "Atualização de Produção: As carteiras físicas entraram em produção. completas chegarão com o envio em breve.",
+        _ => "Production Update: The physical wallets have entered production. Full photos arriving with the shipment soon."
+    };
+
     private string BtnText => CurrentLanguage switch {
         "ES" => "Lanzamiento en Bitcointalk: Próximamente",
         "PT" => "Lançamento no Bitcointalk: Em Breve",
@@ -85,10 +132,10 @@
         _ => "Strict Scarcity"
     };
 
-    private string Spec1Desc => CurrentLanguage switch {
-        "ES" => "Exactamente 200 unidades acuñadas en todo el mundo. Cada pieza está numerada a mano con tinta metálica dorada de archivo (001/200).",
-        "PT" => "Exatamente 200 unidades cunhadas em todo o mundo. Cada peça é numerada à mão com tinta metálica dourada de arquivo (001/200).",
-        _ => "Exactly 200 units minted worldwide. Every piece is hand-numbered in archival gold metallic ink (001/200)."
+private string Spec1Desc => CurrentLanguage switch {
+        "ES" => "Exactamente 200 unidades acuñadas en todo el mundo. Cada pieza está numerada a mano con tinta metálica dorada de archivo (001/200). Las ediciones para coleccionistas incluyen un Certificado de Autenticidad conmemorativo.",
+        "PT" => "Exatamente 200 unidades cunhadas em todo o mundo. Cada peça é numerada à mão com tinta metálica dourada de arquivo (001/200). As edições de colecionador incluem um Certificado de Autenticidade comemorativo.",
+        _ => "Exactly 200 units minted worldwide. Every piece is hand-numbered in archival gold metallic ink (001/200). Collector's editions include a commemorative Certificate of Authenticity."
     };
 
     private string Spec2Title => CurrentLanguage switch {

@@ -45,6 +45,10 @@
       "PackagePath": "staticwebassets\\images\\logo.jpg"
     },
     {
+      "Id": "C:\\Users\\reedw\\PeregrinoBitsWebsite\\wwwroot\\images\\teaser_milestone.jpg",
+      "PackagePath": "staticwebassets\\images\\teaser_milestone.jpg"
+    },
+    {
       "Id": "C:\\Users\\reedw\\PeregrinoBitsWebsite\\wwwroot\\index.html",
       "PackagePath": "staticwebassets\\index.html"
     },

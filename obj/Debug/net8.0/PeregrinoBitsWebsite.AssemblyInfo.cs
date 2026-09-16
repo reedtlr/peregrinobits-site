@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PeregrinoBitsWebsite")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bf9ff4ab420229e3bb2d2d7df507e136d9ec63f6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+aaddf30791095ef44ed373436e681fd04acbfe05")]
 [assembly: System.Reflection.AssemblyProductAttribute("PeregrinoBitsWebsite")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PeregrinoBitsWebsite")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

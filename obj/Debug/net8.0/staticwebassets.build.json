@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "k6Y4y3gtf3t7VfPoWhNkDE5cmYMw7Rvq6fmtnJhlsio=",
+  "Hash": "w70xF2qaXRjtfW6PD46BdKcA1Hi/yqSj6xvFeCsowJQ=",
   "Source": "PeregrinoBitsWebsite",
   "BasePath": "/",
   "Mode": "Root",
@@ -7957,6 +7957,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\logo.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\reedw\\PeregrinoBitsWebsite\\wwwroot\\images\\teaser_milestone.jpg",
+      "SourceId": "PeregrinoBitsWebsite",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\reedw\\PeregrinoBitsWebsite\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "images/teaser_milestone.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\teaser_milestone.jpg"
     },
     {
       "Identity": "C:\\Users\\reedw\\PeregrinoBitsWebsite\\wwwroot\\index.html",
