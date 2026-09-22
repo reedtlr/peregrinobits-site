@@ -133,9 +133,9 @@
     };
 
 private string Spec1Desc => CurrentLanguage switch {
-        "ES" => "Exactamente 200 unidades acuñadas. Cada pieza está numerada a mano con tinta metálica dorada de archivo (001/200). Las ediciones para coleccionistas incluyen un Certificado de Autenticidad conmemorativo y vienen en un sobre cerrado con un sello de cera personalizado que recuerda a los que se recogen a lo largo del Camino.",
-        "PT" => "Exatamente 200 unidades cunhadas. Cada peça é numerada à mão com tinta metálica dourada de arquivo (001/200). As edições de colecionador incluem um Certificado de Autenticidade comemorativo e vêm em um envelope lacrado com um selo de cera personalizado que lembra os coletados ao longo do Caminho.",
-        _ => "Exactly 200 units minted. Every piece is hand-numbered in archival gold metallic ink (001/200). Collector's editions include a commemorative Certificate of Authenticity and come in an envelope sealed by a custom wax stamp reminiscent of the ones collected along the trail."
+        "ES" => "Exactamente 200 unidades acuñadas. Cada pieza está numerada a mano con tinta metálica dorada de archivo (001/200). Las ediciones para coleccionistas incluyen un Certificado de Autenticidad conmemorativo y vienen en un sobre con un sello de cera personalizado que recuerda a los que se recogen a lo largo del Camino.",
+        "PT" => "Exatamente 200 unidades cunhadas. Cada peça é numerada à mão com tinta metálica dourada de arquivo (001/200). As edições de colecionador incluem um Certificado de Autenticidade comemorativo e vêm em um envelope com um selo de cera personalizado que lembra os coletados ao longo do Caminho.",
+        _ => "Exactly 200 units minted. Every piece is hand-numbered in archival gold metallic ink (001/200). Collector's editions include a commemorative Certificate of Authenticity and come in an envelope with a custom wax stamp reminiscent of the ones collected along the trail."
     };
 
     private string Spec2Title => CurrentLanguage switch {
@@ -174,16 +174,14 @@ private string Spec1Desc => CurrentLanguage switch {
         _ => "The safest way to hold digital wealth is through pure, trustless cold storage. Peregrino Bits are built on Ballet's proven, non-electronic physical wallet infrastructure, eliminating the risks of hardware failure, malware, and digital hacking."
     };
 
-   private string BitcoinOrgLinkText => CurrentLanguage switch {
-        "ES" => "Cómo Funciona Bitcoin",
-        "PT" => "Como o Bitcoin Funciona",
-        _ => "How Bitcoin Works"
+ private string BitcoinOrgLinkText => CurrentLanguage switch {
+        "ES" => "Seguridad de Clave Privada",
+        "PT" => "Segurança da Chave Privada",
+        _ => "Private Key Security"
     };
 
     private string BitcoinOrgUrl => CurrentLanguage switch {
-        "ES" => "https://bitcoin.org/es/como-funciona",
-        "PT" => "https://bitcoin.org/pt_BR/como-funciona",
-        _ => "https://bitcoin.org/en/how-it-works"
+        _ => "https://www.ballet.com/2FKG/"
     };
 
     private string BalletLink2 => CurrentLanguage switch {
