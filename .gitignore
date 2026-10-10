@@ -1,0 +1,19 @@
+# Build output
+[Bb]in/
+[Oo]bj/
+
+# Publish output
+[Pp]ublish/
+[Pp]ublish[Oo]utput/
+*.user
+
+# IDE
+.vs/
+.vscode/
+.idea/
+*.suo
+*.userprefs
+
+# OS
+.DS_Store
+Thumbs.db
