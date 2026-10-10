@@ -13,7 +13,7 @@
             <h1 class="main-title">Tus llaves. Tu camino.</h1>
             <p class="tagline">@TaglineText</p>
             <p class="description">@DescriptionText</p>
-            
+
             <div class="cta-group">
                 <button class="btn btn-primary disabled-btn" disabled>@BtnText</button>
             </div>
@@ -23,9 +23,13 @@
     <section class="update-section">
         <div class="update-content">
             <div class="production-update-box">
-                <p>@UpdateParagraph</p>
+                <h2 class="status-title">@StatusTitle</h2>
+                <p>@StatusParagraph</p>
             </div>
-             <img src="images/teaser-milestone.jpg" alt="PeregrinoBits 2026 Milestone" class="teaser-image" />
+            <figure class="proof-figure">
+                <img src="images/card-proof.jpg" alt="@ProofAlt" class="teaser-image" loading="lazy" />
+                <figcaption class="proof-caption">@ProofCaption</figcaption>
+            </figure>
         </div>
     </section>
 
@@ -47,10 +51,28 @@
         </div>
     </section>
 
+    <section class="editions-section" id="editions">
+        <h2>@EditionsTitle</h2>
+        <p class="editions-intro">@EditionsIntro</p>
+
+        <div class="editions-grid">
+            <article class="edition-card edition-card-limited">
+                <span class="edition-tag">@Edition1Tag</span>
+                <h3>@Edition1Title</h3>
+                <p>@Edition1Desc</p>
+            </article>
+            <article class="edition-card edition-card-peregrino">
+                <span class="edition-tag">@Edition2Tag</span>
+                <h3>@Edition2Title</h3>
+                <p>@Edition2Desc</p>
+            </article>
+        </div>
+    </section>
+
     <section class="ballet-section">
         <h2>@BalletTitle</h2>
         <p>@BalletDesc</p>
-        
+
         <div class="ballet-links">
             <a href="@BitcoinOrgUrl" target="_blank" class="btn btn-outline">@BitcoinOrgLinkText</a>
             <a href="https://www.ballet.com/quick-start/" target="_blank" class="btn btn-outline">@BalletLink2</a>
@@ -66,27 +88,113 @@
         text-align: center;
         padding: 0 1rem;
     }
-    
+
     .teaser-image {
         max-width: 100%;
         height: auto;
         border-radius: 8px;
         box-shadow: 0 4px 15px rgba(255, 255, 255, 0.05);
-        margin-bottom: 1.5rem;
     }
-    
+
     .production-update-box {
         background: rgba(255, 255, 255, 0.05);
-        border-left: 4px solid #f39c12; /* Accent color on the left edge */
+        border-left: 4px solid #d4af37; /* Accent color on the left edge */
         padding: 1.2rem 1.5rem;
         border-radius: 4px;
         text-align: left;
     }
-    
+
     .production-update-box p {
         margin: 0;
         font-size: 1rem;
         line-height: 1.5;
+    }
+
+    .status-title {
+        margin: 0 0 0.6rem 0;
+        font-size: 1.15rem;
+        color: #ffffff;
+        font-weight: 700;
+    }
+
+    /* Digital proof placeholder image + its caption */
+    .proof-figure {
+        margin: 1.5rem 0 0 0;
+    }
+
+    .proof-caption {
+        margin-top: 0.75rem;
+        font-size: 0.85rem;
+        color: #777777;
+        font-style: italic;
+    }
+
+    /* Two Unique Editions */
+    .editions-section {
+        margin-top: 5rem;
+        padding-top: 3rem;
+        border-top: 1px solid #222222;
+        text-align: center;
+    }
+
+    .editions-section h2 {
+        color: #ffffff;
+        margin-bottom: 1rem;
+    }
+
+    .editions-intro {
+        color: #a0a0a0;
+        max-width: 700px;
+        margin: 0 auto 2.5rem auto;
+        line-height: 1.6;
+    }
+
+    .editions-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        text-align: left;
+    }
+
+    .edition-card {
+        background-color: #111111;
+        border: 1px solid #222222;
+        border-top: 3px solid #d4af37; /* Gold: numbered collector run */
+        padding: 2rem;
+        border-radius: 10px;
+    }
+
+    .edition-card-peregrino {
+        border-top-color: #4a73b8; /* Camino waymarker blue: trail-direct run */
+    }
+
+    .edition-tag {
+        display: inline-block;
+        font-size: 0.7rem;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: #d4af37;
+        border: 1px solid #333333;
+        border-radius: 20px;
+        padding: 0.25rem 0.7rem;
+        margin-bottom: 0.9rem;
+    }
+
+    .edition-card-peregrino .edition-tag {
+        color: #8fb0e8;
+    }
+
+    .edition-card h3 {
+        color: #ffffff;
+        margin: 0 0 0.6rem 0;
+        font-size: 1.3rem;
+    }
+
+    .edition-card p {
+        color: #888888;
+        line-height: 1.6;
+        font-size: 0.95rem;
+        margin: 0;
     }
 </style>
 
@@ -114,10 +222,28 @@
         _ => "Bridging the spirit of the Camino de Santiago pilgrimage with modern financial sovereignty. A limited physical Bitcoin cold storage release."
     };
 
-    private string UpdateParagraph => CurrentLanguage switch {
-        "ES" => "Actualización de Producción: Las billeteras físicas han entrado en producción. Fotos completas llegarán con el envío pronto.",
-        "PT" => "Atualização de Produção: As carteiras físicas entraram em produção. completas chegarão com o envio em breve.",
-        _ => "Production Update: The physical wallets have entered production. Full photos arriving with the shipment soon."
+    private string StatusTitle => CurrentLanguage switch {
+        "ES" => "Tarjetas en mano — fotos y lanzamiento muy pronto",
+        "PT" => "Cartões em mãos — fotos e lançamento em breve",
+        _ => "Cards In Hand — Photos & Launch Coming Soon"
+    };
+
+    private string StatusParagraph => CurrentLanguage switch {
+        "ES" => "Las tarjetas físicas ya han llegado. La fotografía final y el lanzamiento oficial llegarán muy pronto.",
+        "PT" => "Os cartões físicos já chegaram. A fotografia final e o lançamento oficial chegarão em breve.",
+        _ => "The physical cards have officially arrived. Final photography and the official launch is coming soon."
+    };
+
+    private string ProofAlt => CurrentLanguage switch {
+        "ES" => "Prueba digital de la tarjeta Peregrino Bits, anverso y reverso",
+        "PT" => "Prova digital do cartão Peregrino Bits, frente e verso",
+        _ => "Peregrino Bits card digital proof, front and back"
+    };
+
+    private string ProofCaption => CurrentLanguage switch {
+        "ES" => "Prueba digital — las fotografías del producto final llegarán pronto.",
+        "PT" => "Prova digital — as fotografias do produto final chegarão em breve.",
+        _ => "Digital proof — final product photography coming soon."
     };
 
     private string BtnText => CurrentLanguage switch {
@@ -133,9 +259,9 @@
     };
 
 private string Spec1Desc => CurrentLanguage switch {
-        "ES" => "Exactamente 100 unidades numeradas a mano con tinta metálica dorada de archivo (001/100). Las ediciones para coleccionistas incluyen un Certificado de Autenticidad conmemorativo y un sello de cera personalizado que recuerda a los que se recogen a lo largo del Camino.",
-        "PT" => "Exatamente 100 unidades numeradas à mão com tinta metálica dourada de arquivo (001/100). As edições de colecionador incluem um Certificado de Autenticidade comemorativo e um selo de cera personalizado que lembra os coletados ao longo do Caminho.",
-        _ => "Exactly 100 units hand-numbered in archival gold metallic ink (001/100). Collector's editions include a commemorative Certificate of Authenticity and a custom wax stamp reminiscent of the ones collected along the trail."
+        "ES" => "La Edición Limitada de la Serie 1 está limitada a 100 unidades, numeradas a mano con tinta metálica dorada de archivo. Cada tarjeta se envía sellada a mano en un sobre de presentación, con un Certificado de Autenticidad conmemorativo y un sello de cera personalizado que recuerda a los que se recogen a lo largo del Camino.",
+        "PT" => "A Edição Limitada da Série 1 está limitada a 100 unidades, numeradas à mão com tinta metálica dourada de arquivo. Cada cartão é enviado lacrado à mão em um envelope de apresentação, com um Certificado de Autenticidade comemorativo e um selo de cera personalizado que lembra os coletados ao longo do Caminho.",
+        _ => "The Series 1 Limited Edition is capped at 100 units, hand-numbered in archival gold metallic ink. Every card ships hand-sealed in a presentation envelope with a commemorative Certificate of Authenticity and a custom wax stamp reminiscent of the ones collected along the trail."
     };
 
     private string Spec2Title => CurrentLanguage switch {
@@ -157,9 +283,57 @@ private string Spec1Desc => CurrentLanguage switch {
     };
 
     private string Spec3Desc => CurrentLanguage switch {
-        "ES" => "Una parte está reservada para coleccionistas en línea; el resto se lleva por el Camino para ser regalado directamente a los peregrinos.",
-        "PT" => "Uma parte é reservada para colecionadores online; o restante será transportado pelas trilhas do Caminho para ser presenteado diretamente aos peregrinos.",
-        _ => "A portion is reserved for online collectors; the remainder is carried along the Camino trail to be gifted directly to pilgrims."
+        "ES" => "La Edición Peregrino nunca se vende en línea. Se lleva a pie por el Camino y se entrega directamente a los peregrinos que se encuentran en el trayecto.",
+        "PT" => "A Edição Peregrino nunca é vendida online. Ela é levada a pé pelo Caminho e entregue diretamente aos peregrinos encontrados no percurso.",
+        _ => "The Peregrino Edition is never sold online. It is carried along the Camino on foot and given directly to fellow pilgrims met along the way."
+    };
+
+    private string EditionsTitle => CurrentLanguage switch {
+        "ES" => "Dos Ediciones Únicas",
+        "PT" => "Duas Edições Únicas",
+        _ => "Two Unique Editions"
+    };
+
+    private string EditionsIntro => CurrentLanguage switch {
+        "ES" => "Para honrar tanto al coleccionista como al viaje, las billeteras físicas están disponibles en dos formatos distintos.",
+        "PT" => "Para honrar tanto o colecionador quanto a jornada, as carteiras físicas estão disponíveis em dois formatos distintos.",
+        _ => "To honor both the collector and the journey, the physical wallets are available in two distinct formats."
+    };
+
+    private string Edition1Tag => CurrentLanguage switch {
+        "ES" => "En línea",
+        "PT" => "Online",
+        _ => "Online"
+    };
+
+    private string Edition1Title => CurrentLanguage switch {
+        "ES" => "Edición Limitada",
+        "PT" => "Edição Limitada",
+        _ => "Limited Edition"
+    };
+
+    private string Edition1Desc => CurrentLanguage switch {
+        "ES" => "Estrictamente limitada a 100 unidades en todo el mundo. Cada billetera está numerada secuencialmente a mano (001) para garantizar su procedencia y se presenta con un sello de cera estampado a mano.",
+        "PT" => "Estritamente limitada a 100 unidades em todo o mundo. Cada carteira é numerada sequencialmente à mão (001) para garantir a procedência e é apresentada com um selo de cera carimbado à mão.",
+        _ => "Strictly limited to 100 units worldwide. Each wallet is sequentially hand-numbered (001) for provenance and packaged with a custom hand-stamped wax seal."
+    };
+
+    private string Edition2Tag => CurrentLanguage switch {
+        "ES" => "Directo del Camino",
+        "PT" => "Direto do Caminho",
+        _ => "Trail Direct"
+    };
+
+    private string Edition2Title => CurrentLanguage switch {
+        "ES" => "Edición Peregrino",
+        "PT" => "Edição Peregrino",
+        _ => "Peregrino Edition"
+    };
+
+    private string Edition2Desc => CurrentLanguage switch {
+        "ES" => "Nunca se vende en línea. Se lleva y se entrega estrictamente a pie a otros viajeros del Camino. En lugar de un número de serie, cada una lleva la inscripción «Ultreia» —el saludo tradicional del peregrino que significa «¡Adelante!»— y se remata con el mismo sello de cera personalizado.",
+        "PT" => "Nunca vendida online. São levadas e distribuídas estritamente a pé a outros viajantes do Caminho. Em vez de um número de série, cada uma traz a inscrição “Ultreia” — a saudação tradicional do peregrino que significa “Avante!” — e é finalizada com o mesmo selo de cera personalizado.",
+        _ => "Never sold online. These are carried and distributed strictly by foot to fellow travelers on the trail. Instead of a serial number, each is inscribed with “Ultreia” — the traditional pilgrim greeting meaning “Onward!” — and finished with the same custom wax seal."
     };
 
     private string BalletTitle => CurrentLanguage switch {
