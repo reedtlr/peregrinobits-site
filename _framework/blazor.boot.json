@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "PeregrinoBitsWebsite",
   "resources": {
-    "hash": "sha256-WnCyQCavn/S2bryrHURV8I/l0/SoyOEhYzuMMLom6xY=",
+    "hash": "sha256-plkgtG4riQRgDEaw61XK10A4TXBuJHpecJZ8NkSiWvc=",
     "jsModuleNative": {
       "dotnet.native.js": "sha256-9NoXeVUo4WNrEqrjAp/y3Yc8NmDcymQkzMGOIbIpGio="
     },
@@ -33,7 +33,7 @@
       "Microsoft.JSInterop.wasm": "sha256-pLp7HIVe69V9JFX+Bd03CTtzJEgLDqIvHW6E7HFGwOs=",
       "Microsoft.JSInterop.WebAssembly.wasm": "sha256-XBebGFA0Bur28WwBjdtEDW/VSFd5UYIPMnWIzIRJTw4=",
       "System.Collections.Concurrent.wasm": "sha256-qbsoldWAEqbxBcN9k5FR1gtOjU+mQ+MDmuZdvSyCqXQ=",
-      "System.Collections.wasm": "sha256-b+FW/82Q/p+ZHTHn+uK9ab+rhRSKVyujMkeM2u75J5s=",
+      "System.Collections.wasm": "sha256-nBhUVQqq//Ucfv5Cm+nCjLjjxmgRdr4yOU0UQ5dzLTU=",
       "System.ComponentModel.wasm": "sha256-PsFt2WhF4EluopSKxqrMexySPGfDxERH8Ejn7UJa8T8=",
       "System.Console.wasm": "sha256-AFXXMMB5glzVXUwRZLwBej+k81HAsCwkFskYmFI3gQs=",
       "System.Linq.wasm": "sha256-Q2L9leAq5uAksGQCU8n6EhYnPaeL0udm/BRzIg+0uBg=",
@@ -42,12 +42,12 @@
       "System.Net.Primitives.wasm": "sha256-03D2Yiw/oOjGeJMdjlA2JenzbHEFzB1UQFqZQgFOKLo=",
       "System.Private.Uri.wasm": "sha256-8V+PBpnUcpRMW2PDWN5a75QcJdPVAeqSux0/kBvSvNU=",
       "System.Runtime.InteropServices.JavaScript.wasm": "sha256-WnXS7fZ8U70LBx7ZUbsf092kVVwnc3SNj0mB9hGgKmo=",
-      "System.Runtime.wasm": "sha256-q7TSQltlB2cEsIF6Yw8O3q+hBujTqlmh9pUnqoTLREg=",
+      "System.Runtime.wasm": "sha256-YUgAkA+JFfzrSaVsWlvHWVIDJ/waqBKE4EdEjQaNA50=",
       "System.Text.Encodings.Web.wasm": "sha256-4StEWGrvA12mJBYZv6OGLaTaRPl7TQ2ahSX9uEkJBig=",
       "System.Text.Json.wasm": "sha256-1KcUguMKoRkKQuEdGB69cV5UaWWY+ElTYtwfPQ6EPXI=",
       "System.Text.RegularExpressions.wasm": "sha256-lK8igXz6npoSb7Io1fWfKQ6WRHx+mJ4AGIL9l8Mh5W8=",
-      "System.Private.CoreLib.wasm": "sha256-FDXTTwzfrUGGduKP2OnIprnUejKAd7jYV2WjI+IDygU=",
-      "PeregrinoBitsWebsite.wasm": "sha256-ehVV4MIvpJz96GVhnvTy+YLE3qy6KbZmCAiJDFM0ZGw="
+      "System.Private.CoreLib.wasm": "sha256-N63bGC+OWrUvTK1wsKhR9bG0CnIR7uV44gbIumuyEG0=",
+      "PeregrinoBitsWebsite.wasm": "sha256-0tTahOBd1r1jPn3IPlLu1RvLHU62+zOQvSQ/APq4GXM="
     }
   },
   "cacheBootResources": true,
