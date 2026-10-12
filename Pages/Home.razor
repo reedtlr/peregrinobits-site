@@ -47,6 +47,7 @@
                 <span class="edition-tag">@Edition1Tag</span>
                 <h3>@Edition1Title</h3>
                 <p>@Edition1Desc</p>
+                <p class="edition-note">@EditionNote</p>
                 <div class="edition-gallery">
                     @foreach (var shot in LimitedShots)
                     {
@@ -146,6 +147,14 @@
         line-height: 1.6;
         font-size: 0.95rem;
         margin: 0;
+    }
+
+    /* Pieces held back from the numbered run - deliberately quiet */
+    .edition-card .edition-note {
+        margin-top: 0.9rem;
+        font-size: 0.82rem;
+        line-height: 1.5;
+        color: #6b6b6b;
     }
 
     /* Edition photography: hero across the top, two details beneath */
@@ -266,6 +275,12 @@ private string Spec1Desc => CurrentLanguage switch {
         "ES" => "Estrictamente limitada a 100 unidades en todo el mundo. Cada billetera está numerada secuencialmente a mano (001) para garantizar su procedencia y se presenta con un sello de cera estampado a mano.",
         "PT" => "Estritamente limitada a 100 unidades em todo o mundo. Cada carteira é numerada sequencialmente à mão (001) para garantir a procedência e é apresentada com um selo de cera carimbado à mão.",
         _ => "Strictly limited to 100 units worldwide. Each wallet is sequentially hand-numbered (001) for provenance and packaged with a custom hand-stamped wax seal."
+    };
+
+    private string EditionNote => CurrentLanguage switch {
+        "ES" => "Fuera de la edición numerada: el número 000 y tres Pruebas de Artista (AP) con diseños modificados, conservados por el creador. Una AP podría subastarse más adelante.",
+        "PT" => "Fora da edição numerada: o número 000 e três Provas de Artista (AP) com designs alterados, mantidos pelo criador. Uma AP poderá ser leiloada futuramente.",
+        _ => "Held outside the numbered edition: number 000 and three Artist Proofs (AP) with altered designs, retained by the maker. An AP may be auctioned at a later date."
     };
 
     private string Edition2Tag => CurrentLanguage switch {
