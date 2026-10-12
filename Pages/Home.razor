@@ -20,19 +20,6 @@
         </div>
     </header>
 
-    <section class="update-section">
-        <div class="update-content">
-            <div class="production-update-box">
-                <h2 class="status-title">@StatusTitle</h2>
-                <p>@StatusParagraph</p>
-            </div>
-            <figure class="proof-figure">
-                <img src="images/card-proof.jpg" alt="@ProofAlt" class="teaser-image" loading="lazy" />
-                <figcaption class="proof-caption">@ProofCaption</figcaption>
-            </figure>
-        </div>
-    </section>
-
     <section class="specs-grid" id="specs">
         <div class="spec-card">
             <div class="card-icon">⚡</div>
@@ -60,11 +47,23 @@
                 <span class="edition-tag">@Edition1Tag</span>
                 <h3>@Edition1Title</h3>
                 <p>@Edition1Desc</p>
+                <div class="edition-gallery">
+                    @foreach (var shot in LimitedShots)
+                    {
+                        <img src="images/@shot.File" alt="@AltFor(shot)" loading="lazy" />
+                    }
+                </div>
             </article>
             <article class="edition-card edition-card-peregrino">
                 <span class="edition-tag">@Edition2Tag</span>
                 <h3>@Edition2Title</h3>
                 <p>@Edition2Desc</p>
+                <div class="edition-gallery">
+                    @foreach (var shot in PeregrinoShots)
+                    {
+                        <img src="images/@shot.File" alt="@AltFor(shot)" loading="lazy" />
+                    }
+                </div>
             </article>
         </div>
     </section>
@@ -81,54 +80,6 @@
 </div>
 
 <style>
-    /* New styling for the dedicated update section */
-    .update-section {
-        margin: 3rem auto;
-        max-width: 800px;
-        text-align: center;
-        padding: 0 1rem;
-    }
-
-    .teaser-image {
-        max-width: 100%;
-        height: auto;
-        border-radius: 8px;
-        box-shadow: 0 4px 15px rgba(255, 255, 255, 0.05);
-    }
-
-    .production-update-box {
-        background: rgba(255, 255, 255, 0.05);
-        border-left: 4px solid #d4af37; /* Accent color on the left edge */
-        padding: 1.2rem 1.5rem;
-        border-radius: 4px;
-        text-align: left;
-    }
-
-    .production-update-box p {
-        margin: 0;
-        font-size: 1rem;
-        line-height: 1.5;
-    }
-
-    .status-title {
-        margin: 0 0 0.6rem 0;
-        font-size: 1.15rem;
-        color: #ffffff;
-        font-weight: 700;
-    }
-
-    /* Digital proof placeholder image + its caption */
-    .proof-figure {
-        margin: 1.5rem 0 0 0;
-    }
-
-    .proof-caption {
-        margin-top: 0.75rem;
-        font-size: 0.85rem;
-        color: #777777;
-        font-style: italic;
-    }
-
     /* Two Unique Editions */
     .editions-section {
         margin-top: 5rem;
@@ -196,6 +147,29 @@
         font-size: 0.95rem;
         margin: 0;
     }
+
+    /* Edition photography: hero across the top, two details beneath */
+    .edition-gallery {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.6rem;
+        margin-top: 1.4rem;
+    }
+
+    .edition-gallery img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        border-radius: 6px;
+        border: 1px solid #222222;
+    }
+
+    .edition-gallery img:first-child {
+        grid-column: 1 / -1;
+        aspect-ratio: 16 / 10;
+    }
 </style>
 
 @code {
@@ -220,30 +194,6 @@
         "ES" => "Uniendo el espíritu de la peregrinación del Camino de Santiago con la soberanía financiera moderna. Una edición limitada de almacenamiento en frío físico de Bitcoin.",
         "PT" => "Unindo o espírito da peregrinação do Caminho de Santiago à soberania financeira moderna. Uma edição limitada de armazenamento a frio físico de Bitcoin.",
         _ => "Bridging the spirit of the Camino de Santiago pilgrimage with modern financial sovereignty. A limited physical Bitcoin cold storage release."
-    };
-
-    private string StatusTitle => CurrentLanguage switch {
-        "ES" => "Tarjetas en mano — fotos y lanzamiento muy pronto",
-        "PT" => "Cartões em mãos — fotos e lançamento em breve",
-        _ => "Cards In Hand — Photos & Launch Coming Soon"
-    };
-
-    private string StatusParagraph => CurrentLanguage switch {
-        "ES" => "Las tarjetas físicas ya han llegado. La fotografía final y el lanzamiento oficial llegarán muy pronto.",
-        "PT" => "Os cartões físicos já chegaram. A fotografia final e o lançamento oficial chegarão em breve.",
-        _ => "The physical cards have officially arrived. Final photography and the official launch is coming soon."
-    };
-
-    private string ProofAlt => CurrentLanguage switch {
-        "ES" => "Prueba digital de la tarjeta Peregrino Bits, anverso y reverso",
-        "PT" => "Prova digital do cartão Peregrino Bits, frente e verso",
-        _ => "Peregrino Bits card digital proof, front and back"
-    };
-
-    private string ProofCaption => CurrentLanguage switch {
-        "ES" => "Prueba digital — las fotografías del producto final llegarán pronto.",
-        "PT" => "Prova digital — as fotografias do produto final chegarão em breve.",
-        _ => "Digital proof — final product photography coming soon."
     };
 
     private string BtnText => CurrentLanguage switch {
@@ -362,5 +312,48 @@ private string Spec1Desc => CurrentLanguage switch {
         "ES" => "Guía de Inicio Rápido de Ballet",
         "PT" => "Guia de Início Rápido da Ballet",
         _ => "Ballet Quick Start Guide"
+    };
+
+    // --- Edition photography ---
+    // One entry per photo: the file in wwwroot/images, then its EN / ES / PT alt text.
+    // To swap a photo, drop the new file into wwwroot/images and change the name here.
+    // The first photo in each list runs full width; the rest sit beneath it.
+
+    private sealed record Shot(string File, string En, string Es, string Pt);
+
+    private string AltFor(Shot shot) => CurrentLanguage switch {
+        "ES" => shot.Es,
+        "PT" => shot.Pt,
+        _ => shot.En
+    };
+
+    private static readonly Shot[] LimitedShots = {
+        new("limited-full.jpg",
+            "Limited Edition card 001 with its stamped envelope and Certificate of Authenticity",
+            "La tarjeta 001 de la Edición Limitada con su sobre estampado y su Certificado de Autenticidad",
+            "O cartão 001 da Edição Limitada com seu envelope carimbado e seu Certificado de Autenticidade"),
+        new("limited-detail.jpg",
+            "Close-up of the serial number 001, hand-painted in gold on the card",
+            "Primer plano del número de serie 001, pintado a mano en dorado sobre la tarjeta",
+            "Close-up do número de série 001, pintado à mão em dourado sobre o cartão"),
+        new("limited-seal.jpg",
+            "Macro of the custom wax seal: a gold scallop shell over deep red wax",
+            "Macro del sello de cera personalizado: una vieira dorada sobre cera roja intensa",
+            "Macro do selo de cera personalizado: uma vieira dourada sobre cera vermelha intensa")
+    };
+
+    private static readonly Shot[] PeregrinoShots = {
+        new("peregrino-full.jpg",
+            "Peregrino Edition card in its sleeve with the stamped envelope, insert card and scallop shell sticker",
+            "La tarjeta de la Edición Peregrino en su funda, con el sobre estampado, la tarjeta y la pegatina de vieira",
+            "O cartão da Edição Peregrino em sua capa, com o envelope carimbado, o cartão e o adesivo de vieira"),
+        new("peregrino-detail.jpg",
+            "Close-up of the gold Ultreia inscription that replaces the serial number",
+            "Primer plano de la inscripción dorada Ultreia que sustituye al número de serie",
+            "Close-up da inscrição dourada Ultreia que substitui o número de série"),
+        new("peregrino-seal.jpg",
+            "The kraft presentation envelope closed with the red and gold wax seal",
+            "El sobre de presentación de papel kraft cerrado con el sello de cera rojo y dorado",
+            "O envelope de apresentação de papel kraft fechado com o selo de cera vermelho e dourado")
     };
 }

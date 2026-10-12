@@ -8,6 +8,7 @@
 *.user
 
 # IDE
+.claude/
 .vs/
 .vscode/
 .idea/
