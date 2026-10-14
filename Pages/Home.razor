@@ -14,8 +14,10 @@
             <p class="tagline">@TaglineText</p>
             <p class="description">@DescriptionText</p>
 
+            <p class="sale-note"><span class="sale-dot"></span>@SaleNote</p>
+
             <div class="cta-group">
-                <button class="btn btn-primary disabled-btn" disabled>@BtnText</button>
+                <a href="@SaleThreadUrl" target="_blank" class="btn btn-primary">@BtnText</a>
             </div>
         </div>
     </header>
@@ -81,6 +83,26 @@
 </div>
 
 <style>
+    /* "On sale now" line above the call to action */
+    .sale-note {
+        margin: 0 0 1.1rem 0;
+        color: #d4af37;
+        font-size: 0.95rem;
+        font-weight: 600;
+    }
+
+    /* Inline, so it stays beside the text when the line wraps and follows
+       the hero's text-align on narrow screens. */
+    .sale-dot {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        margin-right: 0.5rem;
+        border-radius: 50%;
+        background-color: #4ade80;
+        vertical-align: middle;
+    }
+
     /* Two Unique Editions */
     .editions-section {
         margin-top: 5rem;
@@ -205,10 +227,18 @@
         _ => "Bridging the spirit of the Camino de Santiago pilgrimage with modern financial sovereignty. A limited physical Bitcoin cold storage release."
     };
 
+    private const string SaleThreadUrl = "https://bitcointalk.org/index.php?topic=5596737.0";
+
+    private string SaleNote => CurrentLanguage switch {
+        "ES" => "La Serie 1 ya está a la venta. 100 tarjetas numeradas a mano, disponibles en Bitcointalk.",
+        "PT" => "A Série 1 já está à venda. 100 cartões numerados à mão, disponíveis no Bitcointalk.",
+        _ => "Series 1 is on sale now. 100 hand-numbered cards, available on Bitcointalk."
+    };
+
     private string BtnText => CurrentLanguage switch {
-        "ES" => "Lanzamiento en Bitcointalk: Próximamente",
-        "PT" => "Lançamento no Bitcointalk: Em Breve",
-        _ => "Bitcointalk Launch: Coming Soon"
+        "ES" => "Comprar en Bitcointalk",
+        "PT" => "Comprar no Bitcointalk",
+        _ => "Buy on Bitcointalk"
     };
 
     private string Spec1Title => CurrentLanguage switch {
