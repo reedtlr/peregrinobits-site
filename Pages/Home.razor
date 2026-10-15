@@ -19,6 +19,10 @@
             <div class="cta-group">
                 <a href="@SaleThreadUrl" target="_blank" class="btn btn-primary">@BtnText</a>
             </div>
+
+            <p class="direct-note">
+                @DirectNote <a href="mailto:@(EmailPrefix + EmailDomain)">@(EmailPrefix + EmailDomain)</a>
+            </p>
         </div>
     </header>
 
@@ -171,6 +175,24 @@
         margin: 0;
     }
 
+    /* Off-forum ordering route, secondary to the button above it */
+    .direct-note {
+        margin: 0.9rem 0 0 0;
+        font-size: 0.85rem;
+        line-height: 1.5;
+        color: #777777;
+    }
+
+    .direct-note a {
+        color: #d4af37;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.35);
+    }
+
+    .direct-note a:hover {
+        border-bottom-color: #d4af37;
+    }
+
     /* Pieces held back from the numbered run - deliberately quiet */
     .edition-card .edition-note {
         margin-top: 0.9rem;
@@ -233,6 +255,15 @@
         "ES" => "La Serie 1 ya está a la venta. 100 tarjetas numeradas a mano, disponibles en Bitcointalk.",
         "PT" => "A Série 1 já está à venda. 100 cartões numerados à mão, disponíveis no Bitcointalk.",
         _ => "Series 1 is on sale now. 100 hand-numbered cards, available on Bitcointalk."
+    };
+
+    private string EmailPrefix = "contact";
+    private string EmailDomain = "@peregrinobits.com";
+
+    private string DirectNote => CurrentLanguage switch {
+        "ES" => "¿No estás en Bitcointalk? Haz tu pedido directamente por correo:",
+        "PT" => "Não está no Bitcointalk? Faça seu pedido diretamente por e-mail:",
+        _ => "Not on Bitcointalk? Order direct by email:"
     };
 
     private string BtnText => CurrentLanguage switch {
