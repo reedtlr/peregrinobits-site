@@ -1,4 +1,5 @@
 ﻿@inherits LayoutComponentBase
+@inject IJSRuntime JS
 
 <CascadingValue Value="CurrentLanguage">
     <div class="app-container">
@@ -9,6 +10,8 @@
                 <button class="btn-lang @(CurrentLanguage == "ES" ? "active" : "")" @onclick="@(() => SetLanguage("ES"))">ES</button>
                 <span class="divider">|</span>
                 <button class="btn-lang @(CurrentLanguage == "PT" ? "active" : "")" @onclick="@(() => SetLanguage("PT"))">PT</button>
+                <span class="divider">|</span>
+                <button class="btn-lang @(CurrentLanguage == "FR" ? "active" : "")" @onclick="@(() => SetLanguage("FR"))">FR</button>
             </div>
 
             <div class="nav-links">
@@ -30,20 +33,49 @@
 @code {
     private string CurrentLanguage { get; set; } = "EN";
 
-    private void SetLanguage(string lang)
+    // Picks up a previously chosen language, else the browser's own preference.
+    // English if neither is usable.
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var detected = await JS.InvokeAsync<string>("peregrinoBits.pickLanguage");
+            if (!string.IsNullOrEmpty(detected))
+            {
+                CurrentLanguage = detected;
+            }
+        }
+        catch
+        {
+            // Script blocked or missing - English is a fine fallback.
+        }
+    }
+
+    private async Task SetLanguage(string lang)
     {
         CurrentLanguage = lang;
+
+        try
+        {
+            await JS.InvokeVoidAsync("peregrinoBits.rememberLanguage", lang);
+        }
+        catch
+        {
+            // Remembering is a nicety; the toggle still works without it.
+        }
     }
 
     private string HomeLink => CurrentLanguage switch {
         "ES" => "Inicio",
         "PT" => "Início",
+        "FR" => "Accueil",
         _ => "Home"
     };
 
     private string AboutLink => CurrentLanguage switch {
         "ES" => "Acerca de",
         "PT" => "Sobre",
+        "FR" => "À propos",
         _ => "About"
     };
 }
