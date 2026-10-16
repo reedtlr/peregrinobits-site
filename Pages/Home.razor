@@ -79,6 +79,11 @@
         <h2>@BalletTitle</h2>
         <p>@BalletDesc</p>
 
+        <figure class="ballet-figure">
+            <img src="images/card-sample.jpg" alt="@SampleAlt" class="ballet-sample" loading="lazy" />
+            <figcaption class="ballet-caption">@SampleCaption</figcaption>
+        </figure>
+
         <div class="ballet-links">
             <a href="@BitcoinOrgUrl" target="_blank" class="btn btn-outline">@BitcoinOrgLinkText</a>
             <a href="https://www.ballet.com/quick-start/" target="_blank" class="btn btn-outline">@BalletLink2</a>
@@ -199,6 +204,26 @@
         font-size: 0.82rem;
         line-height: 1.5;
         color: #6b6b6b;
+    }
+
+    /* Sample card: what "non-electronic physical wallet" actually looks like */
+    .ballet-figure {
+        max-width: 560px;
+        margin: 0 auto 2rem auto;
+    }
+
+    .ballet-sample {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+
+    .ballet-caption {
+        margin-top: 0.9rem;
+        color: #777777;
+        font-size: 0.88rem;
+        line-height: 1.6;
     }
 
     /* Edition photography: hero across the top, two details beneath */
@@ -381,6 +406,20 @@ private string Spec1Desc => CurrentLanguage switch {
         "PT" => "Nunca vendidas online. São levadas e distribuídas estritamente a pé a outros viajantes do Caminho. Em vez de um número de série, cada uma traz a inscrição “Ultreia” — a saudação tradicional do peregrino que significa “Avante!” — e é finalizada com o mesmo selo de cera personalizado.",
         "FR" => "Jamais vendues en ligne. Elles sont portées et distribuées strictement à pied aux autres voyageurs du Chemin. Au lieu d'un numéro de série, chacune porte l'inscription « Ultreia » — l'ancienne salutation des pèlerins signifiant « En avant ! » — et reçoit le même sceau de cire personnalisé.",
         _ => "Never sold online. These are carried and distributed strictly by foot to fellow travelers on the trail. Instead of a serial number, each is inscribed with “Ultreia” — the traditional pilgrim greeting meaning “Onward!” — and finished with the same custom wax seal."
+    };
+
+    private string SampleAlt => CurrentLanguage switch {
+        "ES" => "Las dos caras de una tarjeta de muestra: el anverso con la ilustración del Camino y el reverso con un código QR y una banda rascable",
+        "PT" => "Os dois lados de um cartão de amostra: a frente com a ilustração do Caminho e o verso com um código QR e uma faixa raspável",
+        "FR" => "Les deux faces d'une carte d'exemple : le recto avec l'illustration du Chemin et le verso avec un code QR et une bande à gratter",
+        _ => "Both faces of a sample card: the front with the Camino artwork, the back with a QR code and a scratch-off strip"
+    };
+
+    private string SampleCaption => CurrentLanguage switch {
+        "ES" => "Ambas caras de una tarjeta de muestra. El reverso lleva un código QR para consultar el saldo y una banda rascable que oculta la clave privada. Nada que enchufar, nada que conectar.",
+        "PT" => "Ambos os lados de um cartão de amostra. O verso tem um código QR para consultar o saldo e uma faixa raspável que esconde a chave privada. Nada para ligar, nada para conectar.",
+        "FR" => "Les deux faces d'une carte d'exemple. Le dos porte un code QR pour consulter le solde et une bande à gratter qui cache la clé privée. Rien à brancher, rien à connecter.",
+        _ => "Both faces of a sample card. The back carries a QR code for checking the balance and a scratch-off strip hiding the private key. Nothing to plug in, nothing to connect."
     };
 
     private string BalletTitle => CurrentLanguage switch {
