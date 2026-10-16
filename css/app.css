@@ -75,6 +75,7 @@ body {
 /* Buttons */
 .cta-group {
     display: flex;
+    flex-wrap: wrap;
     gap: 1rem;
 }
 
@@ -305,4 +306,23 @@ body {
     position: absolute;
     right: 0.75rem;
     top: 0.5rem;
+}
+/* Narrow screens: .top-nav is defined twice above, so this has to come last
+   to win the cascade. Four language buttons plus the longest nav labels
+   (French "Accueil / A propos") need more room than 3rem of side padding
+   leaves at 375px. */
+@media (max-width: 768px) {
+    .top-nav {
+        padding: 1.5rem 1rem 0 1rem;
+        gap: 1rem;
+    }
+
+    .nav-links {
+        gap: 1.25rem;
+    }
+
+    /* Keep "A propos" on one line rather than breaking after the accent. */
+    .nav-link {
+        white-space: nowrap;
+    }
 }
