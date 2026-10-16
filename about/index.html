@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>About the Project — PeregrinoBits</title>
+    <meta name="description" content="Why PeregrinoBits exists: promoting cryptocurrency literacy and self-custody, and carrying hand-made physical Bitcoin keepsakes on foot along the Camino de Santiago." />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="PeregrinoBits" />
+    <meta property="og:title" content="About the Project — PeregrinoBits" />
+    <meta property="og:description" content="Promoting cryptocurrency literacy and self-custody, and connecting the borderless ethos of Bitcoin with the Camino de Santiago." />
+    <meta property="og:image" content="https://peregrinobits.com/images/limited-full.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Stays "/" so the framework and asset paths resolve from the site root. -->
+    <base href="/" />
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link href="PeregrinoBitsWebsite.styles.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="app">
+        <!-- Static fallback, replaced by Blazor on load. Mirrors the English copy
+             in Pages/About.razor. This file exists so /about returns 200 rather
+             than falling through to 404.html, which search engines will not index. -->
+        <div class="page-wrapper text-block">
+            <h1>About the Project</h1>
+
+            <p>PeregrinoBits was established with a core mission: to promote cryptocurrency
+                literacy and champion the principles of financial self-sufficiency. In an
+                increasingly digital world, true sovereignty still relies on the fundamental
+                ability to hold your own keys.</p>
+
+            <p>By utilizing physical, non-electronic cold storage, this initiative aims to
+                demystify self-custody. It transforms abstract digital concepts into tangible,
+                secure assets that anyone can understand and physically hold.</p>
+
+            <p>Beyond the hardware, this project is designed to bridge the gap between global,
+                virtual networks and physical, real-world communities. By carrying the Peregrino
+                Edition by foot along the Camino de Santiago trail and giving it directly to
+                fellow pilgrims, PeregrinoBits connects the decentralized, borderless ethos of
+                Bitcoin with the shared endurance and human connection of the ancient
+                pilgrimage.</p>
+
+            <p>
+                <a href="mailto:contact@peregrinobits.com">Contact the Project</a> ·
+                <a href="/">PeregrinoBits home</a>
+            </p>
+        </div>
+    </div>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+    <script>
+        // Language preference: a previously chosen one wins, otherwise the
+        // browser's own setting. Storage can throw in private mode, so it is
+        // always guarded.
+        window.peregrinoBits = {
+            supported: ["EN", "ES", "PT", "FR"],
+            pickLanguage: function () {
+                try {
+                    var saved = localStorage.getItem("pb-lang");
+                    if (saved && this.supported.indexOf(saved) >= 0) {
+                        return saved;
+                    }
+                } catch (e) { /* private mode or blocked storage */ }
+
+                var tags = (navigator.languages && navigator.languages.length)
+                    ? navigator.languages
+                    : [navigator.language || "en"];
+
+                for (var i = 0; i < tags.length; i++) {
+                    var code = String(tags[i]).slice(0, 2).toUpperCase();
+                    if (this.supported.indexOf(code) >= 0) {
+                        return code;
+                    }
+                }
+                return "EN";
+            },
+            rememberLanguage: function (lang) {
+                try {
+                    localStorage.setItem("pb-lang", lang);
+                } catch (e) { /* nothing to do - the toggle still works */ }
+            }
+        };
+    </script>
+    <script src="_framework/blazor.webassembly.js"></script>
+</body>
+
+</html>
