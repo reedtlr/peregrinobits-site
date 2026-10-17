@@ -15,18 +15,6 @@
             <p class="description">@DescriptionText</p>
 
             <p class="sale-note"><span class="sale-dot"></span>@SaleNote</p>
-
-            <div class="cta-group">
-                <a href="@SaleThreadUrl" target="_blank" class="btn btn-primary">@BtnText</a>
-                @if (!string.IsNullOrWhiteSpace(CardCheckoutUrl))
-                {
-                    <a href="@CardCheckoutUrl" target="_blank" class="btn btn-outline">@CardBtnText</a>
-                }
-            </div>
-
-            <p class="direct-note">
-                @DirectNote <a href="mailto:@(EmailPrefix + EmailDomain)">@(EmailPrefix + EmailDomain)</a>
-            </p>
         </div>
     </header>
 
@@ -76,6 +64,19 @@
                     }
                 </div>
             </article>
+        </div>
+    </section>
+
+    <section class="buy-section">
+        <h2>@BuyTitle</h2>
+        <p class="buy-price">@BuyPrice</p>
+
+        <div class="cta-group">
+            @if (!string.IsNullOrWhiteSpace(CardCheckoutUrl))
+            {
+                <a href="@CardCheckoutUrl" target="_blank" class="btn btn-primary">@CardBtnText</a>
+            }
+            <a href="@SaleThreadUrl" target="_blank" class="btn btn-primary">@BtnText</a>
         </div>
     </section>
 
@@ -184,30 +185,37 @@
         margin: 0;
     }
 
-    /* Off-forum ordering route, secondary to the button above it */
-    .direct-note {
-        margin: 0.9rem 0 0 0;
-        font-size: 0.85rem;
-        line-height: 1.5;
-        color: #777777;
-    }
-
-    .direct-note a {
-        color: #d4af37;
-        text-decoration: none;
-        border-bottom: 1px solid rgba(212, 175, 55, 0.35);
-    }
-
-    .direct-note a:hover {
-        border-bottom-color: #d4af37;
-    }
-
     /* Pieces held back from the numbered run - deliberately quiet */
     .edition-card .edition-note {
         margin-top: 0.9rem;
         font-size: 0.82rem;
         line-height: 1.5;
         color: #6b6b6b;
+    }
+
+    /* Buy block: the ask, placed after the editions rather than in the hero */
+    .buy-section {
+        margin-top: 4rem;
+        padding-top: 3rem;
+        border-top: 1px solid #222222;
+        text-align: center;
+    }
+
+    .buy-section h2 {
+        color: #ffffff;
+        margin-bottom: 0.9rem;
+    }
+
+    .buy-price {
+        max-width: 620px;
+        margin: 0 auto 1.6rem auto;
+        color: #a0a0a0;
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .buy-section .cta-group {
+        justify-content: center;
     }
 
     /* Sample card: what "non-electronic physical wallet" actually looks like */
@@ -294,9 +302,6 @@
         _ => "Series 1 is on sale now. 100 hand-numbered cards, available on Bitcointalk."
     };
 
-    private string EmailPrefix = "contact";
-    private string EmailDomain = "@peregrinobits.com";
-
     private string CardBtnText => CurrentLanguage switch {
         "ES" => "Pagar con tarjeta",
         "PT" => "Pagar com cartão",
@@ -304,11 +309,20 @@
         _ => "Pay by card"
     };
 
-    private string DirectNote => CurrentLanguage switch {
-        "ES" => "¿No estás en Bitcointalk? Haz tu pedido directamente por correo:",
-        "PT" => "Não está no Bitcointalk? Faça seu pedido diretamente por e-mail:",
-        "FR" => "Pas sur Bitcointalk ? Commandez directement par e-mail :",
-        _ => "Not on Bitcointalk? Order direct by email:"
+    // These figures also live in the Stripe payment link and the Bitcointalk
+    // thread. Change one, change all three.
+    private string BuyPrice => CurrentLanguage switch {
+        "ES" => "$29 USD por tarjeta, más el envío: $7 a EE. UU., $13 a Canadá y $15 al resto del mundo. Pagando en BTC en Bitcointalk son $25.",
+        "PT" => "$29 USD por cartão, mais o envio: $7 para os EUA, $13 para o Canadá e $15 para o resto do mundo. Pagando em BTC no Bitcointalk são $25.",
+        "FR" => "$29 USD par carte, plus les frais de port : $7 vers les États-Unis, $13 vers le Canada et $15 pour le reste du monde. En BTC sur Bitcointalk, c'est $25.",
+        _ => "$29 USD per card, plus shipping — $7 in the US, $13 to Canada, $15 everywhere else. Paying in BTC on Bitcointalk is $25."
+    };
+
+    private string BuyTitle => CurrentLanguage switch {
+        "ES" => "Consigue una",
+        "PT" => "Adquira um",
+        "FR" => "Procurez-vous-en une",
+        _ => "Get one"
     };
 
     private string BtnText => CurrentLanguage switch {
