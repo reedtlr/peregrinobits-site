@@ -57,6 +57,7 @@
                 <span class="edition-tag">@Edition2Tag</span>
                 <h3>@Edition2Title</h3>
                 <p>@Edition2Desc</p>
+                <p class="edition-more"><a href="/ultreia">@TrailLink</a></p>
                 <div class="edition-gallery">
                     @foreach (var shot in PeregrinoShots)
                     {
@@ -154,6 +155,21 @@
 
     .edition-card-peregrino {
         border-top-color: #4a73b8; /* Camino waymarker blue: trail-direct run */
+    }
+
+    .edition-more {
+        margin-top: 0.8rem !important;
+        font-size: 0.88rem !important;
+    }
+
+    .edition-more a {
+        color: #8fb0e8;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(143, 176, 232, 0.35);
+    }
+
+    .edition-more a:hover {
+        border-bottom-color: #8fb0e8;
     }
 
     .edition-tag {
@@ -315,7 +331,7 @@
         "ES" => "$29 USD por tarjeta, más el envío: $7 a EE. UU., $13 a Canadá y $15 al resto del mundo. Pagando en BTC en Bitcointalk son $25.",
         "PT" => "$29 USD por cartão, mais o envio: $7 para os EUA, $13 para o Canadá e $15 para o resto do mundo. Pagando em BTC no Bitcointalk são $25.",
         "FR" => "$29 USD par carte, plus les frais de port : $7 vers les États-Unis, $13 vers le Canada et $15 pour le reste du monde. En BTC sur Bitcointalk, c'est $25.",
-        _ => "$29 USD per card, plus shipping — $7 in the US, $13 to Canada, $15 everywhere else. Paying in BTC on Bitcointalk is $25."
+        _ => "$29 USD per card, plus shipping; $7 in the US, $13 to Canada, $15 everywhere else. Paying in BTC on Bitcointalk is $25."
     };
 
     private string BuyTitle => CurrentLanguage switch {
@@ -430,11 +446,18 @@ private string Spec1Desc => CurrentLanguage switch {
         _ => "Peregrino Edition"
     };
 
+    private string TrailLink => CurrentLanguage switch {
+        "ES" => "Sobre la Edición Peregrino y cómo llevar algunas →",
+        "PT" => "Sobre a Edição Peregrino e como levar algumas →",
+        "FR" => "À propos de l'Édition Peregrino et comment en porter →",
+        _ => "About the Peregrino Edition, and carrying some →"
+    };
+
     private string Edition2Desc => CurrentLanguage switch {
-        "ES" => "Nunca se vende en línea. Se lleva y se entrega estrictamente a pie a otros viajeros del Camino. En lugar de un número de serie, cada una lleva la inscripción «Ultreia» —el saludo tradicional del peregrino que significa «¡Adelante!»— y se remata con el mismo sello de cera personalizado.",
-        "PT" => "Nunca vendidas online. São levadas e distribuídas estritamente a pé a outros viajantes do Caminho. Em vez de um número de série, cada uma traz a inscrição “Ultreia” — a saudação tradicional do peregrino que significa “Avante!” — e é finalizada com o mesmo selo de cera personalizado.",
-        "FR" => "Jamais vendues en ligne. Elles sont portées et distribuées strictement à pied aux autres voyageurs du Chemin. Au lieu d'un numéro de série, chacune porte l'inscription « Ultreia » — l'ancienne salutation des pèlerins signifiant « En avant ! » — et reçoit le même sceau de cire personnalisé.",
-        _ => "Never sold online. These are carried and distributed strictly by foot to fellow travelers on the trail. Instead of a serial number, each is inscribed with “Ultreia” — the traditional pilgrim greeting meaning “Onward!” — and finished with the same custom wax seal."
+        "ES" => "Nunca se vende en línea. Se lleva y se entrega estrictamente a pie a otros viajeros del Camino. En lugar de un número de serie, cada una lleva la inscripción «Ultreia», un saludo tradicional del peregrino que significa «¡Adelante!», y se remata con el mismo sello de cera personalizado.",
+        "PT" => "Nunca vendidas online. São levadas e distribuídas estritamente a pé a outros viajantes do Caminho. Em vez de um número de série, cada uma traz a inscrição “Ultreia”, uma saudação tradicional do peregrino que significa “Avante!”, e é finalizada com o mesmo selo de cera personalizado.",
+        "FR" => "Jamais vendues en ligne. Elles sont portées et distribuées strictement à pied aux autres voyageurs du Chemin. Au lieu d'un numéro de série, chacune porte l'inscription « Ultreia », une salutation traditionnelle des pèlerins signifiant « En avant ! », et reçoit le même sceau de cire personnalisé.",
+        _ => "Never sold online. These are carried and distributed strictly by foot to fellow travelers on the trail. Instead of a serial number, each is inscribed with “Ultreia”, a traditional pilgrim greeting meaning “Onward!”, and finished with the same custom wax seal."
     };
 
     private string SampleAlt => CurrentLanguage switch {

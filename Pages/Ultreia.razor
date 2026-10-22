@@ -1,0 +1,360 @@
+﻿@page "/ultreia"
+
+<PageTitle>@PageHeading | PeregrinoBits</PageTitle>
+
+<div class="page-wrapper">
+    <header class="hero-section">
+        <div class="hero-logo-container">
+            <img src="images/peregrino-detail.jpg" alt="@HeroAlt" class="hero-logo" />
+        </div>
+        <div class="hero-text-container">
+            <span class="badge badge-quiet">@NotForSale</span>
+            <h1 class="main-title">Ultreia</h1>
+            <p class="tagline">@Tagline</p>
+            <p class="description">@Intro</p>
+        </div>
+    </header>
+
+    <section class="trail-block">
+        <h2>@WhatTitle</h2>
+        <p>@WhatIntro</p>
+        <p>@WhatDetail</p>
+        <img src="images/peregrino-sealed.jpg" alt="@SealAlt" class="trail-photo" loading="lazy" />
+        <p class="trail-aside">@NoMoneyNote</p>
+
+        <figure class="trail-figure">
+            <img src="images/card-sample.jpg" alt="@SampleAlt" class="trail-photo trail-photo-sample" loading="lazy" />
+            <figcaption class="trail-caption">
+                @SampleCaption
+                <a href="@BalletSecurityUrl" target="_blank">@SampleLink</a>
+            </figcaption>
+        </figure>
+    </section>
+
+    <section class="trail-block">
+        <h2>@WhyTitle</h2>
+        <p>@WhyBody</p>
+        <img src="images/santiago-arrival.jpg" alt="@ArrivalAlt" class="trail-photo trail-photo-tall" loading="lazy" />
+    </section>
+
+    <section class="trail-block trail-carry">
+        <h2>@CarryTitle</h2>
+        <p>@CarryIntro</p>
+
+        <ul class="trail-steps">
+            <li>@CarryStep1</li>
+            <li>@CarryStep2</li>
+            <li>@CarryStep3</li>
+        </ul>
+
+        <p>@CarryAsk</p>
+
+        <div class="cta-group">
+            <a href="mailto:@(EmailPrefix + EmailDomain)" class="btn btn-primary">@CarryCta</a>
+        </div>
+    </section>
+
+    <section class="trail-footnote">
+        <p>@FundingNote <a href="/">@FundingLink</a></p>
+    </section>
+</div>
+
+<style>
+    .badge-quiet {
+        color: #8fb0e8; /* Camino waymarker blue, same as the Peregrino cards */
+    }
+
+    .trail-block {
+        max-width: 760px;
+        margin: 3.5rem auto 0 auto;
+    }
+
+    .trail-block h2 {
+        color: #ffffff;
+        margin-bottom: 1rem;
+    }
+
+    .trail-block p {
+        color: #a0a0a0;
+        font-size: 1.05rem;
+        line-height: 1.75;
+        margin: 0 0 1.1rem 0;
+    }
+
+    /* The "there is no money on it" paragraph - set apart so nobody misses it */
+    .trail-aside {
+        border-left: 3px solid #4a73b8;
+        padding: 0.2rem 0 0.2rem 1.2rem;
+        color: #8c8c8c !important;
+        font-size: 0.98rem !important;
+    }
+
+    .trail-photo {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin: 1.8rem 0;
+        border-radius: 8px;
+        border: 1px solid #222222;
+    }
+
+    .trail-figure {
+        margin: 0;
+    }
+
+    .trail-photo-sample {
+        max-width: 560px;
+        margin: 1.8rem auto 0.9rem auto;
+        border: none;
+    }
+
+    .trail-caption {
+        max-width: 560px;
+        margin: 0 auto;
+        text-align: center;
+        color: #777777;
+        font-size: 0.88rem;
+        line-height: 1.6;
+    }
+
+    .trail-caption a {
+        color: #8fb0e8;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(143, 176, 232, 0.35);
+        white-space: nowrap;
+    }
+
+    .trail-caption a:hover {
+        border-bottom-color: #8fb0e8;
+    }
+
+    .trail-photo-tall {
+        max-width: 420px;
+        margin: 1.8rem auto;
+    }
+
+    .trail-carry {
+        padding-top: 2.5rem;
+        border-top: 1px solid #222222;
+    }
+
+    .trail-steps {
+        margin: 0 0 1.4rem 0;
+        padding-left: 1.2rem;
+        color: #a0a0a0;
+        font-size: 1.05rem;
+        line-height: 1.75;
+    }
+
+    .trail-steps li {
+        margin-bottom: 0.5rem;
+    }
+
+    .trail-footnote {
+        max-width: 760px;
+        margin: 4rem auto 0 auto;
+        padding-top: 2rem;
+        border-top: 1px solid #1c1c1c;
+    }
+
+    .trail-footnote p {
+        color: #666666;
+        font-size: 0.88rem;
+        margin: 0;
+    }
+
+    .trail-footnote a {
+        color: #d4af37;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.35);
+    }
+
+    .trail-footnote a:hover {
+        border-bottom-color: #d4af37;
+    }
+</style>
+
+@code {
+    [CascadingParameter]
+    public string CurrentLanguage { get; set; } = "EN";
+
+    private string EmailPrefix = "contact";
+    private string EmailDomain = "@peregrinobits.com";
+
+    private string PageHeading => CurrentLanguage switch {
+        "ES" => "Edición Peregrino",
+        "PT" => "Edição Peregrino",
+        "FR" => "Édition Peregrino",
+        _ => "Peregrino Edition"
+    };
+
+    private string HeroAlt => CurrentLanguage switch {
+        "ES" => "Una tarjeta de la Edición Peregrino con la inscripción dorada Ultreia",
+        "PT" => "Um cartão da Edição Peregrino com a inscrição dourada Ultreia",
+        "FR" => "Une carte de l'Édition Peregrino portant l'inscription dorée Ultreia",
+        _ => "A Peregrino Edition card with the gold Ultreia inscription"
+    };
+
+    private string NotForSale => CurrentLanguage switch {
+        "ES" => "No está a la venta",
+        "PT" => "Não está à venda",
+        "FR" => "Pas à vendre",
+        _ => "Not for sale"
+    };
+
+    private string Tagline => CurrentLanguage switch {
+        "ES" => "LAS TARJETAS QUE NO SE PUEDEN COMPRAR",
+        "PT" => "OS CARTÕES QUE NÃO SE PODEM COMPRAR",
+        "FR" => "LES CARTES QU'ON NE PEUT PAS ACHETER",
+        _ => "THE CARDS YOU CANNOT BUY"
+    };
+
+    private string Intro => CurrentLanguage switch {
+        "ES" => "Una pequeña tirada de recuerdos del Camino hechos a mano, llevados a pie y entregados a los peregrinos que se encuentran por el camino. No se venden en ningún sitio, a ningún precio. La única forma de conseguir una es estar en el Camino.",
+        "PT" => "Uma pequena série de lembranças do Caminho feitas à mão, levadas a pé e entregues aos peregrinos encontrados pelo caminho. Não são vendidas em lugar nenhum, por preço nenhum. A única maneira de conseguir uma é estar no Caminho.",
+        "FR" => "Une petite série de souvenirs du Chemin faits à la main, portés à pied et remis aux pèlerins rencontrés en route. Elles ne sont vendues nulle part, à aucun prix. Le seul moyen d'en obtenir une est d'être sur le Chemin.",
+        _ => "A small run of hand-made Camino keepsakes, carried on foot and given to pilgrims met along the way. They are not sold anywhere, at any price. The only way to get one is to be out there on the Camino."
+    };
+
+    private string WhatTitle => CurrentLanguage switch {
+        "ES" => "Qué es",
+        "PT" => "O que é",
+        "FR" => "Ce que c'est",
+        _ => "What it is"
+    };
+
+    private string WhatIntro => CurrentLanguage switch {
+        "ES" => "Un recuerdo del tamaño de una tarjeta de crédito con el camino hacia Santiago de Compostela pintado encima, inspirado en mi propia experiencia en la ruta.",
+        "PT" => "Uma lembrança do tamanho de um cartão de crédito com o caminho até Santiago de Compostela pintado nela, inspirada na minha própria experiência na rota.",
+        "FR" => "Un souvenir de la taille d'une carte bancaire, avec le chemin vers Saint-Jacques-de-Compostelle peint dessus, inspiré de ma propre expérience sur la route.",
+        _ => "A credit-card-sized keepsake with the journey to Santiago de Compostela painted across it, inspired by my experience on the trail."
+    };
+
+    private string WhatDetail => CurrentLanguage switch {
+        "ES" => "Donde la edición numerada lleva un número de serie, estas llevan la palabra Ultreia, el saludo tradicional del peregrino que significa «adelante» o «más allá». Cada una se termina a mano y viene en un sobre estampado con cera.",
+        "PT" => "Onde a edição numerada traz um número de série, estas trazem a palavra Ultreia, a saudação tradicional do peregrino que significa “avante” ou “mais além”. Cada uma é acabada à mão e vem num envelope carimbado com cera.",
+        "FR" => "Là où l'édition numérotée porte un numéro de série, celles-ci portent le mot Ultreia, la salutation traditionnelle des pèlerins signifiant « en avant » ou « plus loin ». Chacune est finie à la main et vient dans une enveloppe estampée à la cire.",
+        _ => "Where the numbered edition carries a serial number, these carry the word Ultreia, the traditional pilgrim greeting, meaning “onward” or “keep going further”. Each one is finished by hand and comes in a wax-stamped envelope."
+    };
+
+    private string NoMoneyNote => CurrentLanguage switch {
+        "ES" => "También es una billetera de Bitcoin funcional. No tiene batería, ni pantalla, ni nada que cargar. Se entrega vacía y sigue vacía a menos que decidas poner algo tú mismo: aquí nadie está regalando dinero. Si nunca tocas esa parte, sigue siendo un bonito recuerdo que llevarte a casa.",
+        "PT" => "É também uma carteira de Bitcoin funcional. Não tem bateria, nem ecrã, nem nada para carregar. É entregue vazia e continua vazia a menos que decidas pôr algo nela: aqui ninguém está a distribuir dinheiro. Se nunca tocares nessa parte, continua a ser uma bonita lembrança para levar para casa.",
+        "FR" => "C'est aussi un portefeuille Bitcoin fonctionnel. Pas de batterie, pas d'écran, rien à recharger. Il est remis vide et le reste, à moins que vous ne décidiez d'y mettre quelque chose : personne ne distribue d'argent ici. Si vous ne touchez jamais à cette partie, cela reste un joli souvenir à rapporter chez soi.",
+        _ => "It is also a working Bitcoin wallet. There is no battery, no screen and nothing to charge. It ships empty and stays empty unless you choose to put something on it; nobody is handing out money here. If you never touch that part of it, it is still a nice keepsake to carry home."
+    };
+
+    private string SealAlt => CurrentLanguage switch {
+        "ES" => "La Edición Peregrino: la tarjeta en su funda, un sobre de papel kraft sellado con cera, el certificado estampado Edición Peregrino y una pegatina de vieira",
+        "PT" => "A Edição Peregrino: o cartão na sua capa, um envelope de papel kraft lacrado com cera, o certificado carimbado Edición Peregrino e um autocolante de vieira",
+        "FR" => "L'Édition Peregrino : la carte dans sa pochette, une enveloppe kraft scellée à la cire, le certificat portant le tampon Edición Peregrino et un autocollant coquille",
+        _ => "The Peregrino Edition: the sleeved card, a wax-sealed kraft envelope, the certificate stamped Edición Peregrino, and a scallop shell sticker"
+    };
+
+    private string ArrivalAlt => CurrentLanguage switch {
+        "ES" => "Dos pares de zapatillas gastadas descansando sobre las losas de la Praza do Obradoiro, con la Catedral de Santiago de Compostela enfrente",
+        "PT" => "Dois pares de sapatilhas gastas pousados sobre as lajes da Praza do Obradoiro, com a Catedral de Santiago de Compostela em frente",
+        "FR" => "Deux paires de chaussures de marche usées posées sur les dalles de la Praza do Obradoiro, la cathédrale de Saint-Jacques-de-Compostelle devant",
+        _ => "Two pairs of worn walking shoes resting on the stones of the Praza do Obradoiro, the Cathedral of Santiago de Compostela ahead"
+    };
+
+    private const string BalletSecurityUrl = "https://www.ballet.com/2FKG/";
+
+    private string SampleAlt => CurrentLanguage switch {
+        "ES" => "Las dos caras de una tarjeta de muestra: el anverso con la ilustración del Camino y el reverso con un código QR y una banda rascable",
+        "PT" => "Os dois lados de um cartão de amostra: a frente com a ilustração do Caminho e o verso com um código QR e uma faixa raspável",
+        "FR" => "Les deux faces d'une carte d'exemple : le recto avec l'illustration du Chemin et le verso avec un code QR et une bande à gratter",
+        _ => "Both faces of a sample card: the front with the Camino artwork, the back with a QR code and a scratch-off strip"
+    };
+
+    private string SampleCaption => CurrentLanguage switch {
+        "ES" => "Ambas caras de una tarjeta de muestra. El reverso lleva un código QR para consultar el saldo y una banda rascable que oculta la clave privada. Nada que enchufar, nada que conectar.",
+        "PT" => "Ambos os lados de um cartão de amostra. O verso tem um código QR para consultar o saldo e uma faixa raspável que esconde a chave privada. Nada para ligar, nada para conectar.",
+        "FR" => "Les deux faces d'une carte d'exemple. Le dos porte un code QR pour consulter le solde et une bande à gratter qui cache la clé privée. Rien à brancher, rien à connecter.",
+        _ => "Both faces of a sample card. The back carries a QR code for checking the balance and a scratch-off strip hiding the private key. Nothing to plug in, nothing to connect."
+    };
+
+    private string SampleLink => CurrentLanguage switch {
+        "ES" => "Cómo funciona la seguridad de Ballet",
+        "PT" => "Como funciona a segurança da Ballet",
+        "FR" => "Le fonctionnement de la sécurité Ballet",
+        _ => "How Ballet's key security works"
+    };
+
+    private string WhyTitle => CurrentLanguage switch {
+        "ES" => "Por qué",
+        "PT" => "Porquê",
+        "FR" => "Pourquoi",
+        _ => "Why"
+    };
+
+    private string WhyBody => CurrentLanguage switch {
+        "ES" => "Hice el Camino Portugués este año con mi hija. Llevas lo que necesitas a la espalda, sigues una flecha amarilla y nadie puede caminarlo por ti. Bitcoin te pide lo mismo: tus llaves, tu responsabilidad, tu camino. Varias veces me perdí por el camino, pero siempre había algún compañero de viaje para ayudarme a volver a la ruta. Me pareció que merecía la pena hacer algo al respecto. Vuelvo al Camino el próximo verano con un puñado de estas.",
+        "PT" => "Fiz o Caminho Português este ano com a minha filha. Levas o que precisas às costas, segues uma seta amarela e ninguém o pode caminhar por ti. O Bitcoin pede-te o mesmo: as tuas chaves, a tua responsabilidade, o teu caminho. Várias vezes me perdi pelo caminho, mas havia sempre um companheiro de viagem para me ajudar a voltar à rota. Pareceu-me que valia a pena fazer algo sobre isso. Volto ao Caminho no próximo verão com um punhado destas.",
+        "FR" => "J'ai fait le Camino Portugués cette année avec ma fille. On porte ce dont on a besoin sur le dos, on suit une flèche jaune, et personne ne peut marcher à votre place. Le Bitcoin vous demande la même chose : vos clés, votre responsabilité, votre chemin. Il m'est arrivé plusieurs fois de me perdre en route, mais il y avait toujours un compagnon de voyage pour m'aider à retrouver le chemin. Cela méritait qu'on en fasse quelque chose. Je repars l'été prochain avec une poignée de celles-ci.",
+        _ => "I walked the Camino Portugués earlier this year with my daughter. You carry what you need on your back, you follow a yellow arrow, and nobody can walk it for you. That is the same bargain Bitcoin asks of you: your keys, your responsibility, your road. Several times I got lost along the way, but there was always a fellow traveler to help me find my way back to the trail. That felt worth making something about. I am heading back out next summer with a pocketful of these."
+    };
+
+    private string CarryTitle => CurrentLanguage switch {
+        "ES" => "Lleva algunas",
+        "PT" => "Leva algumas",
+        "FR" => "Portez-en quelques-unes",
+        _ => "Carry some"
+    };
+
+    private string CarryIntro => CurrentLanguage switch {
+        "ES" => "Solo puedo recorrer una ruta a la vez. Si sales al Camino este próximo año (el Francés, el Norte, el Primitivo, el Inglés, la Vía de la Plata, el Portugués, cualquier ruta del Camino) a pie o en bicicleta, y te apetece regalar unas cuantas, me gustaría saber de ti.",
+        "PT" => "Só consigo percorrer uma rota de cada vez. Se vais para o Caminho neste próximo ano (o Francês, o Norte, o Primitivo, o Inglês, a Via de la Plata, o Português, qualquer rota do Caminho) a pé ou de bicicleta, e te agrada oferecer algumas, gostava de saber de ti.",
+        "FR" => "Je ne peux parcourir qu'un chemin à la fois. Si vous partez sur le Chemin cette année (le Francés, le Norte, le Primitivo, l'Inglés, la Vía de la Plata, le Portugués, n'importe quel itinéraire du Chemin) à pied ou à vélo, et que cela vous plairait d'en offrir quelques-unes, j'aimerais avoir de vos nouvelles.",
+        _ => "I can only cover one route at a time. If you are heading out on the Camino this coming year (the Francés, the Norte, the Primitivo, the Inglés, the Vía de la Plata, the Portugués, anywhere along the Camino) on foot or by bike, and you would enjoy giving a few of these away, I would like to hear from you."
+    };
+
+    private string CarryStep1 => CurrentLanguage switch {
+        "ES" => "Te envío tres o cuatro antes de que salgas. Sin coste para ti.",
+        "PT" => "Envio-te três ou quatro antes de partires. Sem custo para ti.",
+        "FR" => "Je vous en envoie trois ou quatre avant votre départ. Sans frais pour vous.",
+        _ => "I mail you three or four before you leave. No cost to you."
+    };
+
+    private string CarryStep2 => CurrentLanguage switch {
+        "ES" => "Se las das a quien quieras. A alguien que tenga un mal día, a alguien con quien compartas una comida, a quien sea.",
+        "PT" => "Dá-las a quem quiseres. A alguém que esteja a ter um dia difícil, a alguém com quem partilhes uma refeição, a quem for.",
+        "FR" => "Vous les donnez à qui vous voulez. À quelqu'un qui passe une mauvaise journée, à quelqu'un avec qui vous partagez un repas, à qui vous voulez.",
+        _ => "You give them to whoever you like. Someone having a hard day, someone you share a meal with, whoever it is."
+    };
+
+    private string CarryStep3 => CurrentLanguage switch {
+        "ES" => "Ese es todo el acuerdo. Nada que vender, ninguna obligación de dar explicaciones.",
+        "PT" => "É esse o acordo todo. Nada para vender, nenhuma obrigação de dar notícias.",
+        "FR" => "C'est tout l'arrangement. Rien à vendre, aucune obligation de donner des nouvelles.",
+        _ => "That is the whole arrangement. Nothing to sell, no obligation to report back."
+    };
+
+    private string CarryAsk => CurrentLanguage switch {
+        "ES" => "Dime qué ruta, más o menos cuándo, y si has caminado antes. Te confirmaré si me quedan tarjetas y te escribiré unas seis u ocho semanas antes de tu fecha de salida para organizar el envío.",
+        "PT" => "Diz-me que rota, mais ou menos quando, e se já caminhaste antes. Confirmo se ainda tenho cartões e escrevo-te umas seis a oito semanas antes da tua data de partida para combinar o envio.",
+        "FR" => "Dites-moi quel chemin, à peu près quand, et si vous avez déjà marché. Je vous confirmerai s'il me reste des cartes, puis je reviendrai vers vous six à huit semaines avant votre départ pour organiser l'envoi.",
+        _ => "Tell me which route, roughly when, and whether you have walked before. I will confirm whether I have cards left, then follow up about six to eight weeks before your start date to arrange posting."
+    };
+
+    private string CarryCta => CurrentLanguage switch {
+        "ES" => "Escríbeme",
+        "PT" => "Escreve-me",
+        "FR" => "Écrivez-moi",
+        _ => "Email me"
+    };
+
+    private string FundingNote => CurrentLanguage switch {
+        "ES" => "Una edición numerada aparte se ofrece a la venta a coleccionistas, y eso ayuda a pagar estas.",
+        "PT" => "Uma edição numerada separada é oferecida para venda a colecionadores, e isso ajuda a pagar estas.",
+        "FR" => "Une édition numérotée distincte est proposée à la vente aux collectionneurs, et cela contribue à financer celles-ci.",
+        _ => "A separate numbered edition is offered for sale to collectors, which is what helps pay for these."
+    };
+
+    private string FundingLink => CurrentLanguage switch {
+        "ES" => "Más sobre el proyecto",
+        "PT" => "Mais sobre o projeto",
+        "FR" => "En savoir plus sur le projet",
+        _ => "More about the project"
+    };
+}
