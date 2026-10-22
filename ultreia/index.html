@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Peregrino Edition | PeregrinoBits</title>
+    <meta name="description" content="The Peregrino Edition is never sold at any price. Hand-made Camino de Santiago keepsakes carried on foot and given to pilgrims met along the way." />
+    <link rel="canonical" href="https://peregrinobits.com/ultreia/" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="PeregrinoBits" />
+    <meta property="og:title" content="Peregrino Edition | PeregrinoBits" />
+    <meta property="og:url" content="https://peregrinobits.com/ultreia/" />
+    <meta property="og:description" content="A small run of hand-made Camino keepsakes, carried on foot and given to pilgrims met along the way. Not sold anywhere, at any price." />
+    <meta property="og:image" content="https://peregrinobits.com/images/peregrino-full.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Stays "/" so the framework and asset paths resolve from the site root. -->
+    <base href="/" />
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link href="PeregrinoBitsWebsite.styles.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="app">
+        <!-- Static fallback, replaced by Blazor on load. Mirrors the English copy
+             in Pages/Ultreia.razor. This file exists so /ultreia returns 200 rather
+             than falling through to 404.html, which search engines will not index. -->
+        <div class="page-wrapper text-block">
+            <p>Not for sale</p>
+            <h1>Ultreia</h1>
+            <p>THE CARDS YOU CANNOT BUY</p>
+
+            <p>A small run of hand-made Camino keepsakes, carried on foot and given to
+                pilgrims met along the way. They are not sold anywhere, at any price. The
+                only way to get one is to be out there on the Camino.</p>
+
+            <h2>What it is</h2>
+
+            <p>A credit-card-sized keepsake with the journey to Santiago de Compostela
+                painted across it, inspired by my experience on the trail.</p>
+
+            <p>Where the numbered edition carries a serial number, these carry the word
+                Ultreia, the traditional pilgrim greeting, meaning &ldquo;onward&rdquo; or
+                &ldquo;keep going further&rdquo;. Each one is finished by hand and comes in
+                a wax-stamped envelope.</p>
+
+            <p>It is also a working Bitcoin wallet. There is no battery, no screen and
+                nothing to charge. It ships empty and stays empty unless you choose to put
+                something on it; nobody is handing out money here. If you never touch that
+                part of it, it is still a nice keepsake to carry home.</p>
+
+            <h2>Why</h2>
+
+            <p>I walked the Camino Portugu&eacute;s earlier this year with my daughter. You
+                carry what you need on your back, you follow a yellow arrow, and nobody can
+                walk it for you. That is the same bargain Bitcoin asks of you: your keys,
+                your responsibility, your road. Several times I got lost along the way, but
+                there was always a fellow traveler to help me find my way back to the trail.
+                That felt worth making something about. I am heading back out next summer
+                with a pocketful of these.</p>
+
+            <h2>Carry some</h2>
+
+            <p>I can only cover one route at a time. If you are heading out on the Camino
+                this coming year (the Franc&eacute;s, the Norte, the Primitivo, the
+                Ingl&eacute;s, the V&iacute;a de la Plata, the Portugu&eacute;s, anywhere
+                along the Camino) on foot or by bike, and you would enjoy giving a few of
+                these away, I would like to hear from you.</p>
+
+            <ul>
+                <li>I mail you three or four before you leave. No cost to you.</li>
+                <li>You give them to whoever you like. Someone having a hard day, someone
+                    you share a meal with, whoever it is.</li>
+                <li>That is the whole arrangement. Nothing to sell, no obligation to report
+                    back.</li>
+            </ul>
+
+            <p>Tell me which route, roughly when, and whether you have walked before. I will
+                confirm whether I have cards left, then follow up about six to eight weeks
+                before your start date to arrange posting.</p>
+
+            <p>
+                <a href="mailto:contact@peregrinobits.com">Email me</a>
+            </p>
+
+            <p>A separate numbered edition is offered for sale to collectors, which is what
+                helps pay for these. <a href="/">More about the project</a></p>
+        </div>
+    </div>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+    <script>
+        // Language preference: a previously chosen one wins, otherwise the
+        // browser's own setting. Storage can throw in private mode, so it is
+        // always guarded.
+        window.peregrinoBits = {
+            supported: ["EN", "ES", "PT", "FR"],
+            pickLanguage: function () {
+                try {
+                    var saved = localStorage.getItem("pb-lang");
+                    if (saved && this.supported.indexOf(saved) >= 0) {
+                        return saved;
+                    }
+                } catch (e) { /* private mode or blocked storage */ }
+
+                var tags = (navigator.languages && navigator.languages.length)
+                    ? navigator.languages
+                    : [navigator.language || "en"];
+
+                for (var i = 0; i < tags.length; i++) {
+                    var code = String(tags[i]).slice(0, 2).toUpperCase();
+                    if (this.supported.indexOf(code) >= 0) {
+                        return code;
+                    }
+                }
+                return "EN";
+            },
+            rememberLanguage: function (lang) {
+                try {
+                    localStorage.setItem("pb-lang", lang);
+                } catch (e) { /* nothing to do - the toggle still works */ }
+            }
+        };
+    </script>
+    <script src="_framework/blazor.webassembly.js"></script>
+</body>
+
+</html>
