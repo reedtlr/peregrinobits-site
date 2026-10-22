@@ -18,6 +18,7 @@
     <section class="trail-block">
         <h2>@WhatTitle</h2>
         <p>@WhatIntro</p>
+        <img src="images/peregrino-card.jpg" alt="@CardAlt" class="trail-photo" loading="lazy" />
         <p>@WhatDetail</p>
         <img src="images/peregrino-sealed.jpg" alt="@SealAlt" class="trail-photo" loading="lazy" />
         <p class="trail-aside">@NoMoneyNote</p>
@@ -242,6 +243,13 @@
         "PT" => "É também uma carteira de Bitcoin funcional. Não tem bateria, nem ecrã, nem nada para carregar. É entregue vazia e continua vazia a menos que decidas pôr algo nela: aqui ninguém está a distribuir dinheiro. Se nunca tocares nessa parte, continua a ser uma bonita lembrança para levar para casa.",
         "FR" => "C'est aussi un portefeuille Bitcoin fonctionnel. Pas de batterie, pas d'écran, rien à recharger. Il est remis vide et le reste, à moins que vous ne décidiez d'y mettre quelque chose : personne ne distribue d'argent ici. Si vous ne touchez jamais à cette partie, cela reste un joli souvenir à rapporter chez soi.",
         _ => "It is also a working Bitcoin wallet. There is no battery, no screen and nothing to charge. It ships empty and stays empty unless you choose to put something on it; nobody is handing out money here. If you never touch that part of it, it is still a nice keepsake to carry home."
+    };
+
+    private string CardAlt => CurrentLanguage switch {
+        "ES" => "Primer plano de una tarjeta de la Edición Peregrino, con la llegada a Santiago de Compostela pintada y la inscripción dorada Ultreia",
+        "PT" => "Grande plano de um cartão da Edição Peregrino, com a chegada a Santiago de Compostela pintada e a inscrição dourada Ultreia",
+        "FR" => "Gros plan d'une carte de l'Édition Peregrino, l'arrivée à Saint-Jacques-de-Compostelle peinte et l'inscription dorée Ultreia",
+        _ => "A Peregrino Edition card close up, the painted walk into Santiago de Compostela and the gold Ultreia lettering"
     };
 
     private string SealAlt => CurrentLanguage switch {
