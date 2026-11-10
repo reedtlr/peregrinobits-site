@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verify | PeregrinoBits</title>
+    <meta name="description" content="Tap the mark on a PeregrinoBits piece with your phone to confirm it is genuine and see its live Bitcoin balance." />
+    <!-- Tap links are one time use, so there is nothing here worth indexing or leaking. -->
+    <meta name="robots" content="noindex" />
+    <meta name="referrer" content="no-referrer" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="stylesheet" href="/verify/verify.css" />
+</head>
+
+<body>
+    <main class="verify-wrapper">
+        <a class="brand" href="/">PeregrinoBits</a>
+
+        <!-- Exactly one of these panels is shown at a time by verify.js -->
+
+        <section id="state-idle" class="panel" hidden>
+            <h1>Tap to verify</h1>
+            <p>Hold the top of your phone against the Tap Here mark on a PeregrinoBits piece.
+                Your phone will open this page with a fresh, one time proof from the chip inside.</p>
+            <p class="muted">Nothing to install. Works on any recent iPhone or Android phone with NFC switched on.</p>
+        </section>
+
+        <section id="state-checking" class="panel" hidden>
+            <div class="spinner" aria-hidden="true"></div>
+            <h1>Checking the chip</h1>
+            <p class="muted">One moment.</p>
+        </section>
+
+        <section id="state-verified" class="panel" hidden>
+            <div id="verified-seal" class="seal seal-good">Verified genuine</div>
+            <p id="item-kind" class="item-kind" hidden></p>
+            <h1 id="coin-title"></h1>
+            <p id="coin-subtitle" class="muted"></p>
+
+            <img id="coin-image" class="coin-photo" alt="" hidden />
+            <p id="item-note" class="item-note" hidden></p>
+
+            <dl class="facts">
+                <div><dt>Serial</dt><dd id="fact-serial"></dd></div>
+                <div id="row-maker" hidden><dt>Ballet serial</dt><dd id="fact-maker"></dd></div>
+                <div><dt>Series</dt><dd id="fact-series"></dd></div>
+                <div><dt>Number</dt><dd id="fact-number"></dd></div>
+                <div><dt>Chip tap counter</dt><dd id="fact-taps"></dd></div>
+            </dl>
+
+            <h2 id="funding-heading">Bitcoin</h2>
+            <div id="funding" class="funding funding-loading">Looking up the balance</div>
+            <dl class="facts">
+                <div><dt>Balance</dt><dd id="bal-current">...</dd></div>
+                <div><dt>Total received</dt><dd id="bal-received">...</dd></div>
+                <div><dt>Total sent</dt><dd id="bal-sent">...</dd></div>
+            </dl>
+            <p class="address-line">
+                <span class="muted">Address</span>
+                <a id="address-link" target="_blank" rel="noopener noreferrer"></a>
+            </p>
+
+            <p class="fineprint">This proof came from the chip a moment ago and cannot be reused.
+                Only trust a result you got by tapping it yourself. A screenshot or a
+                forwarded link proves nothing.</p>
+        </section>
+
+        <section id="state-stale" class="panel" hidden>
+            <div class="seal seal-warn">Link already used</div>
+            <h1>Tap again</h1>
+            <p>Each tap makes a proof that works once. This one has been used already, which is
+                what happens when a link is reloaded, copied or forwarded.</p>
+            <p class="muted">If someone sent you this link as proof that a piece is real, ask to tap it yourself.</p>
+        </section>
+
+        <section id="state-revoked" class="panel" hidden>
+            <div class="seal seal-bad">Revoked</div>
+            <h1>This one has been revoked</h1>
+            <p>The chip is one of ours, but <strong id="revoked-serial"></strong> has been
+                marked as revoked in our registry. Please get in touch before buying or accepting it.</p>
+        </section>
+
+        <section id="state-invalid" class="panel" hidden>
+            <div class="seal seal-bad">Not verified</div>
+            <h1>We could not verify this</h1>
+            <p>This link did not come from a genuine PeregrinoBits chip, or it was altered on the way.</p>
+            <p class="muted">Try tapping once more. If it fails again, treat it as suspect.</p>
+        </section>
+
+        <section id="state-error" class="panel" hidden>
+            <div class="seal seal-warn">Try again</div>
+            <h1>The verification service did not answer</h1>
+            <p>This says nothing about what you are holding. Check your connection and tap again in a minute.</p>
+        </section>
+    </main>
+
+    <script src="/verify/config.js"></script>
+    <script src="/verify/verify.js"></script>
+</body>
+
+</html>
