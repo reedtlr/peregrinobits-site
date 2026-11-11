@@ -77,6 +77,9 @@ p { margin: 0.6rem 0; }
     margin: 0.25rem 0 0.75rem;
 }
 
+/* An image with no picture yet takes no space at all. */
+.coin-photo[hidden] { display: none; }
+
 .coin-photo {
     display: block;
     width: 100%;

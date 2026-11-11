@@ -48,15 +48,25 @@
 
     // Wording per kind of item. A record with no item_type is a coin.
     //   coin  the chip sits under the coin's own hologram
-    //   card  the chip sits in the paper certificate that travels with a wallet card
+    //   card  the chip sits on the envelope that holds a wallet card
     var KINDS = {
-        coin: { noun: "coin", seal: "Verified genuine", kind: "", note: "" },
-        card: {
-            noun: "card", seal: "Certificate verified", kind: "Certificate of Authenticity",
-            note: "The chip is in this certificate, not in the card itself. Check that the card " +
-                "you are holding matches this photo and serial."
-        }
+        coin: { noun: "coin", seal: "Verified genuine", kind: "" },
+        card: { noun: "card", seal: "Certificate verified", kind: "Certificate of Authenticity" }
     };
+
+    // The line under the photos. Only cards get one, and it depends on whether
+    // the envelope was wax sealed shut (sealed) or can be opened freely.
+    function itemNote(coin) {
+        if (coin.item_type !== "card") return "";
+        var serial = coin.maker_serial ? " The Ballet serial above is printed on the card inside." : "";
+        if (coin.sealed) {
+            return "The chip is on the envelope, not in the card. Compare the wax seal in your hand " +
+                "with the photo. If they differ, the envelope has been opened." + serial;
+        }
+        return "The chip is on the envelope, not in the card. " + (coin.maker_serial
+            ? "Open the envelope and check that the Ballet serial printed on the card matches the one shown here."
+            : "Open the envelope and check that the card inside matches the photo.");
+    }
 
     function fundingText(state, noun) {
         return {
@@ -102,8 +112,9 @@
         setText("verified-seal", words.seal);
         setText("item-kind", words.kind);
         document.getElementById("item-kind").hidden = !words.kind;
-        setText("item-note", words.note);
-        document.getElementById("item-note").hidden = !words.note;
+        var note = itemNote(coin);
+        setText("item-note", note);
+        document.getElementById("item-note").hidden = !note;
         setText("funding-heading", "Bitcoin on this " + words.noun);
         setText("coin-title", coin.serial || "PeregrinoBits " + words.noun);
         var of = coin.edition_size ? " of " + coin.edition_size : "";
@@ -116,12 +127,16 @@
         setText("fact-number", coin.coin_number ? coin.coin_number + of : "");
         setText("fact-taps", result.tap.counter);
 
-        if (coin.image_url) {
-            var img = document.getElementById("coin-image");
-            img.alt = "Photo of " + words.noun + " " + (coin.serial || "");
-            img.onload = function () { img.hidden = false; };
-            img.src = coin.image_url;
-        }
+        // One photo or two. Each appears only once it has actually loaded, so a
+        // missing file never leaves a broken picture on the page.
+        [["coin-image", coin.image_url, "Photo of "], ["coin-image-2", coin.image_url_2, "Second photo of "]]
+            .forEach(function (p) {
+                if (!p[1]) return;
+                var img = document.getElementById(p[0]);
+                img.alt = p[2] + words.noun + " " + (coin.serial || "");
+                img.onload = function () { img.hidden = false; };
+                img.src = p[1];
+            });
         show("verified");
         if (coin.address) showBalance(coin, words);
     }
