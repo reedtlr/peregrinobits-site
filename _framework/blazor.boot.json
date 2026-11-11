@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "PeregrinoBitsWebsite",
   "resources": {
-    "hash": "sha256-WT0WIG5Ba3dd5MaA0g0g2TfvyVJgW5KxGQnaDTbq5vY=",
+    "hash": "sha256-iSULQopfUTnWnFwCSQ0Ht5U0o4eGWQm4Adc75+bSEAk=",
     "jsModuleNative": {
       "dotnet.native.js": "sha256-1DK+nm58uZjvv7U2c/UlUp1zFjeBZnqXHFHBX/W1igo="
     },
@@ -47,7 +47,7 @@
       "System.Text.Json.wasm": "sha256-vSzrEfhKCRETSkoKaoTYM3IGVFTmm9fvQtGa6hqlJ+8=",
       "System.Text.RegularExpressions.wasm": "sha256-e6A4KEzVsxVjwjSJNDSTUEcSQFgZP700+U8BC+I3Pio=",
       "System.Private.CoreLib.wasm": "sha256-1hoJCg3C7SVqSdtSUFwJR4M7EAwPOaSbSshW2DgeWX4=",
-      "PeregrinoBitsWebsite.wasm": "sha256-W47/Ge1T3kEjUxOUfmtXKoFGZT8ixK27pJg32ksoqGo="
+      "PeregrinoBitsWebsite.wasm": "sha256-gbTB3DPQ0zduYGSsrGHonQJ4EaVXZxhy1BU7d+DPUQY="
     }
   },
   "cacheBootResources": true,
