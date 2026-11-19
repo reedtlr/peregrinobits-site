@@ -14,7 +14,10 @@
             <p class="tagline">@TaglineText</p>
             <p class="description">@DescriptionText</p>
 
-            <p class="sale-note"><span class="sale-dot"></span>@SaleNote</p>
+            @if (SalesOpen)
+            {
+                <p class="sale-note"><span class="sale-dot"></span>@SaleNote</p>
+            }
         </div>
     </header>
 
@@ -68,18 +71,21 @@
         </div>
     </section>
 
-    <section class="buy-section">
-        <h2>@BuyTitle</h2>
-        <p class="buy-price">@BuyPrice</p>
+    @if (SalesOpen)
+    {
+        <section class="buy-section">
+            <h2>@BuyTitle</h2>
+            <p class="buy-price">@BuyPrice</p>
 
-        <div class="cta-group">
-            @if (!string.IsNullOrWhiteSpace(CardCheckoutUrl))
-            {
-                <a href="@CardCheckoutUrl" target="_blank" class="btn btn-primary">@CardBtnText</a>
-            }
-            <a href="@SaleThreadUrl" target="_blank" class="btn btn-primary">@BtnText</a>
-        </div>
-    </section>
+            <div class="cta-group">
+                @if (!string.IsNullOrWhiteSpace(CardCheckoutUrl))
+                {
+                    <a href="@CardCheckoutUrl" target="_blank" class="btn btn-primary">@CardBtnText</a>
+                }
+                <a href="@SaleThreadUrl" target="_blank" class="btn btn-primary">@BtnText</a>
+            </div>
+        </section>
+    }
 
     <section class="ballet-section">
         <h2>@BalletTitle</h2>
@@ -305,7 +311,13 @@
         _ => "Bridging the spirit of the Camino de Santiago pilgrimage with modern financial sovereignty. A limited physical Bitcoin cold storage release."
     };
 
-    private const string SaleThreadUrl = "https://bitcointalk.org/index.php?topic=5596737.0";
+    // Sales paused on the site while the Heritage Auctions lots run (November 2026).
+    // Set this back to true to bring back the "on sale now" line and the
+    // "Get one" section exactly as they were. Also restore the two sale lines
+    // in wwwroot/index.html.
+    private static readonly bool SalesOpen = false;
+
+    private const string SaleThreadUrl ="https://bitcointalk.org/index.php?topic=5596737.0";
 
     // Paste the Stripe payment link here to switch the card button on.
     // While this is empty the button simply is not rendered.
